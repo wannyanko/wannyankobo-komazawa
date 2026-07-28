@@ -56,7 +56,7 @@ header{
   padding:.7rem 1.2rem;
 }
 .logo{font-family:'Kiwi Maru',serif;font-size:1.15rem;font-weight:500;color:var(--orange);text-decoration:none}
-.logo small{font-size:.72rem;display:block;letter-spacing:.15em;color:var(--sumi);opacity:.75}
+.logo small{font-size:.85rem;display:block;letter-spacing:.12em;color:var(--sumi);opacity:.9}
 nav ul{display:flex;gap:1.3rem;list-style:none}
 nav a{text-decoration:none;font-size:.9rem;font-weight:500}
 nav a:hover{color:var(--orange)}
@@ -125,6 +125,11 @@ section{padding:4rem 1.2rem}
 /* concept */
 .concept{text-align:center}
 .concept .inner{max-width:640px}
+.concept-card{
+  background:#fff;border:1px solid rgba(237,80,40,.22);
+  border-radius:16px;padding:2.2rem 2rem;
+}
+@media (max-width:600px){ .concept-card{padding:1.6rem 1.2rem} }
 .concept-lead{font-family:'Kiwi Maru',serif;font-size:clamp(1.3rem,3.4vw,1.9rem);color:var(--orange);line-height:1.8;margin-bottom:1.4rem}
 .concept-lead em{font-style:normal;color:var(--sumi)}
 .story{text-align:left;margin-bottom:1.6rem}
@@ -329,7 +334,7 @@ footer a{margin:0 .5rem}
         <div class="kodawari">
           <article><span class="num">一、</span><h3>最初から最後まで、一人の担当で</h3><p>1日を通してスタッフ一人体制。カウンセリングから仕上げまで同じ人間が担当するので、その子の様子を最後まで見届けられます。</p></article>
           <article><span class="num">二、</span><h3>他の子と会わない、貸切のような時間</h3><p>一度に一頭ずつ。他のわんちゃん・ねこちゃんと顔を合わせないので、人見知り・怖がりの子、他の子が苦手な子も落ち着いて過ごせます。シニアの子もどうぞ。</p></article>
-          <article><span class="num">三、</span><h3>経験豊富なベテラントリマーが担当します</h3><p>皮膚や被毛の状態、その日の様子を見ながら、シャンプーや仕上げ方を選びます。これまで「うちの子は難しいかも」と感じてこられた子も、シニアの子も、まずはご相談ください。</p></article>
+          <article><span class="num">三、</span><h3>経験豊富なベテラントリマーが担当します</h3><p>皮膚や被毛の状態、その日の様子を見ながら、仕上げ方を選びます。これまで「うちの子は難しいかも」と感じてこられた子も、シニアの子も、まずはご相談ください。</p></article>
         </div>
       </div>
       <p class="staff-note">駒沢店には複数のトリマーが在籍し、曜日ごとに担当が決まっています。どの日も、その日の担当が一頭ずつお迎えします。</p>
@@ -338,23 +343,25 @@ footer a{margin:0 .5rem}
 
   <section id="concept" class="concept tint">
     <div class="inner">
-      <span class="en">Concept</span>
-      <div class="story">
-        <p>トリミングが苦手な子は、めずらしくありません。</p>
-        <p>青葉台でたくさんの子達と触れ合ってきた中で、他の子が大好きな子や、スタッフがたくさんいると安心する子もいますが、ただ「他の子の気配がある」というだけで、最後まで緊張が抜けない子がいます。体力の落ちてきたシニアの子には、順番を待つ時間そのものが負担になることもあります。</p>
-        <p>そうした子たちのために、その子だけの時間を用意できる場所があってもいいのではないかと考えるようになりました。</p>
-        <p>駒沢店は、1日の営業をスタッフ一人で行っています。お預かりするのは一度に一頭。</p>
+      <div class="concept-card">
+        <span class="en">Concept</span>
+        <div class="story">
+          <p>トリミングが苦手な子は、めずらしくありません。</p>
+          <p>青葉台でたくさんの子達と触れ合ってきた中で、他の子が大好きな子や、スタッフがたくさんいると安心する子もいますが、ただ「他の子の気配がある」というだけで、最後まで緊張が抜けない子がいます。体力の落ちてきたシニアの子には、順番を待つ時間そのものが負担になることもあります。</p>
+          <p>そうした子たちのために、その子だけの時間を用意できる場所があってもいいのではないかと考えるようになりました。</p>
+          <p>駒沢店は、1日の営業をスタッフ一人で行っています。お預かりするのは一度に一頭。</p>
+        </div>
+        <p class="story-land">待つ時間をつくらず、最初から最後まで同じ人間が見守る<br>別の形の「<em>2番目のお家</em>」のような時間を。</p>
+        <p class="story-sign">株式会社わんにゃん工房　代表取締役／駒沢店店長　寺地　葵</p>
       </div>
-      <p class="story-land">待つ時間をつくらず、最初から最後まで同じ人間が見守る<br>別の形の「<em>2番目のお家</em>」のような時間を。</p>
-      <p class="story-sign">株式会社わんにゃん工房　代表取締役／駒沢店店長　寺地　葵</p>
     </div>
   </section>
 
-  <section id="price" class="tint">
+  <section id="price">
     <div class="inner">
       <span class="en">Menu &amp; Price</span>
       <h2 class="sec-title">メニュー・料金</h2>
-      <p class="price-note">代表的な犬種の料金です（税込）。犬種別JKC認証平均サイズを超える場合、毛玉・もつれの状態により変動します。ねこちゃん、および下記以外の犬種・MIXの料金は、料金表をご覧いただくか、LINEでお気軽にお問い合わせください。</p>
+      <p class="price-note">代表的な犬種の料金です（税込）。犬種別JKC認証平均サイズを超える場合、毛玉・もつれの状態により変動します。猫、および下記以外の犬種・MIXの料金は、料金表をご覧いただくか、LINEでお気軽にお問い合わせください。</p>
 
       <table class="price-table">
         <thead>
@@ -374,7 +381,7 @@ footer a{margin:0 .5rem}
 
       <div class="price-cta">
         <a class="all-link" href="price.html">料金表をすべて見る →</a>
-        <span>大型犬・ねこちゃん・その他の犬種もこちらに掲載しています</span>
+        <span>大型犬・猫・その他の犬種もこちらに掲載しています</span>
       </div>
 
       <p class="price-foot">※ オプション（ヒゲカット・ハーブパック等）・イージーシャンプーの料金は<a href="price.html" style="color:var(--orange-d);font-weight:700">料金表</a>に掲載しています。※ ご利用の際は期限内の狂犬病・混合ワクチン接種証明書が必要です。※ 当店は完全予約制です。当日のキャンセルや、ご連絡がつかず予約時間を過ぎてしまったなどが多い場合は、キャンセル料を頂くことがございます。※ 施術前後のお預かりは行っておりません。</p>
