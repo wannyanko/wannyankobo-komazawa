@@ -3,6 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- ブラウザの自動ダークモードで色が崩れるのを防ぐ（ライトモード専用の宣言） -->
+<meta name="color-scheme" content="light">
 <title>料金表｜わんにゃん工房 駒沢店</title>
 <meta name="description" content="わんにゃん工房 駒沢店のトリミング料金表。犬全犬種と猫の、シャンプー・トリミング・イージーシャンプー各コース料金とオプションをご案内します。">
 <!-- ★★★ 仮公開用の設定：本番公開するときは、下の1行を必ず削除してください ★★★ -->
@@ -23,12 +25,17 @@
 <link href="https://fonts.googleapis.com/css2?family=Kiwi+Maru:wght@400;500&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
 :root{
+  color-scheme:only light;
+  
   --sumi:#3a2a20;--kinari:#faf6ee;--orange:#ed5028;--orange-d:#d5401c;
   --yellow:#f7b500;--usuoge:#f0e4d4;--line:#06c755;--maxw:820px;
 }
 *{margin:0;padding:0;box-sizing:border-box}
 body{font-family:'Zen Kaku Gothic New',sans-serif;color:var(--sumi);background:var(--kinari);line-height:1.8;font-size:16px}
 a{color:inherit}
+/* LINEなどアプリ内ブラウザが背景を暗く上書きするのを防ぐ
+   （最背面に背景色の層を敷いて、色が消えないようにする） */
+body::before{content:"";position:fixed;inset:0;background:var(--kinari);z-index:-1}
 :focus-visible{outline:3px solid var(--orange);outline-offset:3px;border-radius:4px}
 
 header{position:sticky;top:0;z-index:50;background:rgba(250,246,238,.94);backdrop-filter:blur(6px);border-bottom:1px solid rgba(237,80,40,.25)}

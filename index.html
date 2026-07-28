@@ -3,6 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- ブラウザの自動ダークモードで色が崩れるのを防ぐ（ライトモード専用の宣言） -->
+<meta name="color-scheme" content="light">
 <title>わんにゃん工房 駒沢店｜駒沢のトリミングサロン</title>
 <meta name="description" content="東京・世田谷／駒沢のトリミングサロン「わんにゃん工房 駒沢店」。「二番目のお家に」をコンセプトに、わんちゃん・ねこちゃん一頭ずつに寄り添います。ご予約はLINEで承ります。">
 <!-- ★★★ 仮公開用の設定：本番公開するときは、下の1行を必ず削除してください ★★★ -->
@@ -24,6 +26,8 @@
 <link href="https://fonts.googleapis.com/css2?family=Kiwi+Maru:wght@400;500&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
 :root{
+  color-scheme:only light;
+  
   --sumi:#3a2a20;         /* こげ茶（本文） */
   --kinari:#faf6ee;        /* 生成り背景 */
   --cream:#f3ead9;        /* クリーム（面） */
@@ -44,6 +48,9 @@ body{
 }
 img{max-width:100%;display:block}
 a{color:inherit}
+/* LINEなどアプリ内ブラウザが背景を暗く上書きするのを防ぐ
+   （最背面に背景色の層を敷いて、色が消えないようにする） */
+body::before{content:"";position:fixed;inset:0;background:var(--kinari);z-index:-1}
 :focus-visible{outline:3px solid var(--orange);outline-offset:3px;border-radius:4px}
 @media (prefers-reduced-motion: reduce){
   html{scroll-behavior:auto}
@@ -152,7 +159,24 @@ section{padding:4rem 1.2rem}
   padding-top:1.4rem;border-top:1px solid rgba(237,80,40,.3);
 }
 .story-land em{font-style:normal;color:var(--sumi)}
-.story-sign{font-size:.85rem;margin-top:1.4rem;opacity:.8}
+.story-author{
+  display:flex;align-items:center;justify-content:flex-end;gap:1rem;
+  margin-top:1.6rem;padding-top:1.2rem;border-top:1px solid rgba(237,80,40,.15);
+}
+.ph-face{
+  width:74px;height:74px;border-radius:50%;flex-shrink:0;
+  background:repeating-linear-gradient(45deg,rgba(237,80,40,.08) 0 10px,rgba(237,80,40,.03) 10px 20px);
+  border:1px dashed rgba(237,80,40,.4);
+  display:grid;place-items:center;
+  color:var(--orange-d);font-size:.68rem;line-height:1.4;text-align:center;
+}
+img.ph-face{border:none;background:none;object-fit:cover}
+.story-sign{font-size:.85rem;opacity:.85;text-align:left;line-height:1.7}
+@media (max-width:520px){
+  .story-author{gap:.8rem}
+  .ph-face{width:62px;height:62px}
+  .story-sign{font-size:.8rem}
+}
 .concept p{font-size:.98rem}
 
 /* placeholder */
@@ -207,7 +231,32 @@ section{padding:4rem 1.2rem}
 }
 .price-cta .all-link:hover{background:var(--orange-d)}
 .price-cta span{font-size:.85rem;opacity:.8}
-.price-foot{font-size:.8rem;margin-top:1.4rem;opacity:.8}
+/* 折りたたみ（JavaScript不要のHTML標準機能） */
+details.fold{
+  background:#fff;border:1px solid rgba(237,80,40,.18);
+  border-radius:12px;margin-top:1rem;
+}
+details.fold+details.fold{margin-top:.7rem}
+details.fold>summary{
+  cursor:pointer;list-style:none;padding:.85rem 1.2rem;
+  font-weight:700;font-size:.9rem;color:var(--orange-d);
+  display:flex;align-items:center;justify-content:space-between;gap:1rem;
+}
+details.fold>summary::-webkit-details-marker{display:none}
+details.fold>summary::after{content:"＋";color:var(--orange);font-size:1rem;flex-shrink:0}
+details.fold[open]>summary::after{content:"−"}
+details.fold[open]>summary{border-bottom:1px solid rgba(237,80,40,.14)}
+.fold-body{padding:1rem 1.2rem 1.2rem;font-size:.87rem}
+.fold-body ul{list-style:none}
+.fold-body li{padding-left:1.1rem;position:relative;margin-bottom:.5rem;line-height:1.8}
+.fold-body li:last-child{margin-bottom:0}
+.fold-body li::before{content:"※";position:absolute;left:0;color:var(--orange);font-size:.8rem}
+.fold-body dl{display:grid;grid-template-columns:auto 1fr;gap:.25rem .9rem}
+.fold-body dt{font-weight:700;white-space:nowrap;color:var(--orange-d)}
+.fold-body .pay-row{margin-bottom:.7rem}
+.fold-body .pay-row:last-child{margin-bottom:0}
+.fold-body .pay-row strong{display:block;color:var(--sumi)}
+@media (max-width:520px){ .fold-body dl{grid-template-columns:1fr;gap:0} .fold-body dt{margin-top:.5rem} }
 @media (max-width:640px){ .opt-wrap{grid-template-columns:1fr} }
 
 /* discount */
@@ -221,17 +270,43 @@ section{padding:4rem 1.2rem}
 .flow li::before{content:"STEP " counter(step);font-size:.72rem;letter-spacing:.2em;color:var(--orange);font-weight:700;display:block;margin-bottom:.3rem}
 .flow h3{font-size:1rem;font-weight:700;margin-bottom:.4rem;color:var(--sumi)}
 .flow p{font-size:.88rem}
+.step-time{
+  margin-top:.6rem;padding:.55rem .75rem;
+  background:rgba(237,80,40,.07);border-radius:8px;
+  font-size:.79rem;line-height:1.75;
+}
+.step-time b{display:block;color:var(--orange-d);font-size:.72rem;letter-spacing:.03em;margin-bottom:.15rem}
 @media (max-width:720px){ .flow{grid-template-columns:1fr 1fr} }
-@media (max-width:460px){ .flow{grid-template-columns:1fr} }
+@media (max-width:460px){
+  /* 1列あたり150pxを確保できる時だけ2列。狭い端末では自動で1列に戻る */
+  .flow{grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:.6rem}
+  .flow li{padding:1rem .85rem}
+  .flow h3{font-size:.92rem}
+  .flow p{font-size:.82rem;line-height:1.75}
+}
 
 /* sns */
-.sns{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem}
-.sns a{text-decoration:none;background:#fff;border:1px solid rgba(237,80,40,.18);border-radius:14px;padding:1.6rem 1.2rem;text-align:center;transition:transform .15s ease}
-.sns a:hover{transform:translateY(-3px)}
-.sns .en{margin-bottom:.3rem}
-.sns strong{font-family:'Kiwi Maru',serif;font-weight:500;color:var(--orange);font-size:1.05rem;display:block;margin-bottom:.3rem}
-.sns span{font-size:.82rem}
-@media (max-width:640px){ .sns{grid-template-columns:1fr} }
+.sns-main{
+  display:flex;align-items:center;gap:1.2rem;
+  text-decoration:none;background:#fff;
+  border:2px solid var(--orange);border-radius:16px;
+  padding:1.4rem 1.5rem;transition:transform .15s ease;
+}
+.sns-main:hover{transform:translateY(-3px)}
+.sns-icon{flex-shrink:0;color:var(--orange)}
+.sns-icon svg{width:38px;height:38px;display:block}
+.sns-body{flex:1;min-width:0}
+.sns-body .en{margin-bottom:.15rem}
+.sns-body strong{font-family:'Kiwi Maru',serif;font-weight:500;color:var(--orange);font-size:1.1rem;display:block;margin-bottom:.25rem}
+.sns-lead{font-size:.85rem;display:block;line-height:1.75}
+.sns-arrow{flex-shrink:0;color:var(--orange);font-size:1.2rem;font-weight:700}
+.sns-sub{margin-top:.9rem;font-size:.85rem;text-align:right}
+.sns-sub a{color:var(--orange-d);text-decoration:underline;text-underline-offset:3px}
+@media (max-width:520px){
+  .sns-main{gap:.9rem;padding:1.2rem 1.1rem}
+  .sns-icon svg{width:30px;height:30px}
+  .sns-arrow{display:none}
+}
 
 /* shop */
 .shop{display:grid;grid-template-columns:1fr 1fr;gap:2rem;align-items:start}
@@ -272,14 +347,6 @@ footer a{margin:0 .5rem}
 @media (max-width:520px){ .news-list article{grid-template-columns:1fr;gap:.2rem} }
 
 /* license / payment info */
-.info-cols{display:grid;grid-template-columns:1fr 1fr;gap:1.6rem;margin-top:1.4rem}
-.info-cols .box{background:#fff;border:1px solid rgba(237,80,40,.18);border-radius:12px;padding:1.2rem 1.4rem}
-.info-cols h3{font-family:'Kiwi Maru',serif;font-weight:500;font-size:1rem;color:var(--orange-d);margin-bottom:.6rem}
-.info-cols dl{display:grid;grid-template-columns:auto 1fr;gap:.2rem .8rem;font-size:.85rem}
-.info-cols dt{font-weight:700;white-space:nowrap}
-.info-cols .pay p{font-size:.85rem;margin-bottom:.5rem}
-.info-cols .pay strong{color:var(--sumi)}
-@media (max-width:640px){ .info-cols{grid-template-columns:1fr} }
 
 /* mobile sticky */
 .sticky-bar{position:fixed;left:0;right:0;bottom:0;z-index:60;display:none;grid-template-columns:1fr 1fr;gap:1px;background:rgba(58,42,32,.15);box-shadow:0 -4px 16px rgba(0,0,0,.12)}
@@ -358,12 +425,16 @@ footer a{margin:0 .5rem}
         <span class="en">Concept</span>
         <div class="story">
           <p>トリミングが苦手な子は、めずらしくありません。</p>
-          <p>青葉台でたくさんの子達と触れ合ってきた中で、他の子が大好きな子や、スタッフがたくさんいると安心する子もいますが、ただ「他の子の気配がある」というだけで、最後まで緊張が抜けない子がいます。体力の落ちてきたシニアの子には、順番を待つ時間そのものが負担になることもあります。</p>
+          <p>青葉台店でたくさんの子達と触れ合ってきた中で、他の子が大好きな子や、スタッフがたくさんいると安心する子もいますが、ただ「他の子の気配がある」というだけで、最後まで緊張が抜けない子がいます。体力の落ちてきたシニアの子には、順番を待つ時間そのものが負担になることもあります。</p>
           <p>そうした子たちのために、その子だけの時間を用意できる場所があってもいいのではないかと考えるようになりました。</p>
           <p>駒沢店は、1日の営業をスタッフ一人で行っています。お預かりするのは一度に一頭。</p>
         </div>
         <p class="story-land">待つ時間をつくらず、最初から最後まで同じ人間が見守る<br>別の形の「<em>2番目のお家</em>」のような時間を。</p>
-        <p class="story-sign">株式会社わんにゃん工房　代表取締役／駒沢店店長　寺地　葵</p>
+        <div class="story-author">
+          <!-- 写真差し替え：下の div を <img src="staff.jpg" alt="駒沢店店長" class="ph-face"> に置き換えてください -->
+          <div class="ph-face">担当者の<br>写真</div>
+          <p class="story-sign">株式会社わんにゃん工房<br>代表取締役／駒沢店店長　寺地　葵</p>
+        </div>
       </div>
     </div>
   </section>
@@ -382,9 +453,7 @@ footer a{margin:0 .5rem}
           <tr><td>チワワ・ダックス（スムース）</td><td>6,600円〜</td><td>ー</td></tr>
           <tr><td>チワワ・ダックス（ロング）・パグ</td><td>7,700円〜</td><td>9,900円〜</td></tr>
           <tr><td>ポメラニアン</td><td>9,900円〜</td><td>12,100円〜</td></tr>
-          <tr><td>ヨークシャーテリア</td><td>8,800円〜</td><td>12,100円〜</td></tr>
           <tr><td>トイプードル・マルチーズ・シーズー・シュナウザー</td><td>11,000円〜</td><td>13,200円〜</td></tr>
-          <tr><td>ビションフリーゼ・ウエスティ</td><td>13,200円〜</td><td>16,500円〜</td></tr>
           <tr><td>柴犬・コーギー</td><td>11,000円〜</td><td>ー</td></tr>
           <tr><td>ゴールデンレトリバー・ボーダーコリー</td><td>16,500円〜</td><td>24,200円〜</td></tr>
         </tbody>
@@ -395,7 +464,17 @@ footer a{margin:0 .5rem}
         <span>大型犬・猫・その他の犬種もこちらに掲載しています</span>
       </div>
 
-      <p class="price-foot">※ オプション（ヒゲカット・ハーブパック等）・イージーシャンプーの料金は<a href="price.html" style="color:var(--orange-d);font-weight:700">料金表</a>に掲載しています。※ ご利用の際は期限内の狂犬病・混合ワクチン接種証明書が必要です。※ 当店は完全予約制です。当日のキャンセルや、ご連絡がつかず予約時間を過ぎてしまったなどが多い場合は、キャンセル料を頂くことがございます。※ 施術前後のお預かりは行っておりません。</p>
+      <details class="fold">
+        <summary>料金に関するご注意（4件）</summary>
+        <div class="fold-body">
+          <ul>
+            <li>オプション（ヒゲカット・ハーブパック等）・イージーシャンプーの料金は<a href="price.html" style="color:var(--orange-d);font-weight:700">料金表</a>に掲載しています。</li>
+            <li>ご利用の際は、期限内の狂犬病・混合ワクチン接種証明書が必要です。</li>
+            <li>当店は完全予約制です。当日のキャンセルや、ご連絡がつかず予約時間を過ぎてしまったなどが多い場合は、キャンセル料を頂くことがございます。</li>
+            <li>施術前後のお預かりは行っておりません。</li>
+          </ul>
+        </div>
+      </details>
     </div>
   </section>
 
@@ -406,30 +485,38 @@ footer a{margin:0 .5rem}
       <ul class="flow">
         <li><h3>LINE・お電話でご予約</h3><p>犬種・年齢・気になる点を教えてください。LINEならお写真を送っていただくとスムーズです。お電話でのご予約も承っています。</p></li>
         <li><h3>ご来店・カウンセリング</h3><p>当日の体調と仕上がりのご希望を確認します。</p></li>
-        <li><h3>施術</h3><p>その子のペースで進めます。お預かりの目安は◯〜◯時間ほどです。<!-- ★所要時間の目安をここに記入してください（例：2〜3時間） --></p></li>
+        <li><h3>施術</h3><p>その子のペースで進めます。</p><p class="step-time"><b>お預かりの目安（小型犬）</b>シャンプー　約1時間<br>トリミング　約2時間30分</p></li>
         <li><h3>お迎え・ご報告</h3><p>当日の様子と、皮膚・被毛で気づいた点をお伝えします。トリミング後のお預かりはしておりませんので、お迎えのご協力をお願いいたします。</p></li>
       </ul>
+      <div class="karte">
+        <p><strong>初めてご利用のお客様へ</strong>　ご来店前にご利用規約をお読みいただくと、当日のカウンセリングがスムーズに進みます。</p>
+        <a href="kiyaku.pdf" target="_blank" rel="noopener">ご利用規約を読む（PDF）</a>
+      </div>
     </div>
   </section>
 
   <section id="sns" class="tint">
     <div class="inner">
       <span class="en">Follow us</span>
-      <h2 class="sec-title">日々の仕上がり・お知らせ</h2>
-      <div class="sns">
-        <a href="https://www.instagram.com/wannyan_komazawa/" target="_blank" rel="noopener">
-          <span class="en">Instagram</span><strong>@wannyan_komazawa</strong>
-          <span>可愛い仕上がりを随時更新中</span>
-        </a>
-        <a href="https://www.youtube.com/channel/UC-hAbAg4av0Ejjg7hxDaUCQ" target="_blank" rel="noopener">
-          <span class="en">YouTube</span><strong>わんにゃん工房</strong>
-          <span>オプション紹介やカット動画（青葉台店・駒沢店 共通）</span>
-        </a>
-        <a href="https://lin.ee/X6eWV7C">
-          <span class="en">LINE</span><strong>公式アカウント</strong>
-          <span>ご予約・ご相談はこちらから</span>
-        </a>
-      </div>
+      <h2 class="sec-title">日々の仕上がり</h2>
+      <a class="sns-main" href="https://www.instagram.com/wannyan_komazawa/" target="_blank" rel="noopener">
+        <span class="sns-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <rect x="2.5" y="2.5" width="19" height="19" rx="5.5"/>
+            <circle cx="12" cy="12" r="4.2"/>
+            <circle cx="17.6" cy="6.4" r="1.2" fill="currentColor" stroke="none"/>
+          </svg>
+        </span>
+        <span class="sns-body">
+          <span class="en">Instagram</span>
+          <strong>@wannyan_komazawa</strong>
+          <span class="sns-lead">その日の仕上がりを写真で更新しています。カットのイメージ探しにもどうぞ。</span>
+        </span>
+        <span class="sns-arrow" aria-hidden="true">→</span>
+      </a>
+      <p class="sns-sub">
+        <a href="https://www.youtube.com/channel/UC-hAbAg4av0Ejjg7hxDaUCQ" target="_blank" rel="noopener">YouTubeチャンネル（青葉台店・駒沢店 共通）→</a>
+      </p>
     </div>
   </section>
 
@@ -532,21 +619,19 @@ footer a{margin:0 .5rem}
         </div>
       </div>
 
-      <div class="karte">
-        <p><strong>初めてご利用のお客様へ</strong>　ご来店前にご利用規約をお読みいただくと、当日のカウンセリングがスムーズに進みます。</p>
-        <a href="kiyaku.pdf" target="_blank" rel="noopener">ご利用規約を読む（PDF）</a>
-      </div>
-
-      <div class="info-cols">
-        <div class="box pay">
-          <h3>お支払い方法</h3>
-          <p><strong>現金</strong></p>
-          <p><strong>クレジットカード</strong><br>VISA / Mastercard / JCB / AMEX / Diners</p>
-          <p><strong>電子マネー</strong><br>Suica / PASMO / iD / QUICPay</p>
-          <p><strong>QRコード決済</strong><br>PayPay / 楽天ペイ / d払い / au PAY / メルペイ / せたがやPay</p>
+      <details class="fold">
+        <summary>お支払い方法（現金・カード・電子マネー・QR決済）</summary>
+        <div class="fold-body">
+          <div class="pay-row"><strong>現金</strong></div>
+          <div class="pay-row"><strong>クレジットカード</strong>VISA / Mastercard / JCB / AMEX / Diners</div>
+          <div class="pay-row"><strong>電子マネー</strong>Suica / PASMO / iD / QUICPay</div>
+          <div class="pay-row"><strong>QRコード決済</strong>PayPay / 楽天ペイ / d払い / au PAY / メルペイ / せたがやPay</div>
         </div>
-        <div class="box">
-          <h3>動物取扱業の登録</h3>
+      </details>
+
+      <details class="fold">
+        <summary>動物取扱業の登録</summary>
+        <div class="fold-body">
           <dl>
             <dt>名称</dt><dd>株式会社わんにゃん工房</dd>
             <dt>事業所名称</dt><dd>わんにゃん工房駒沢店</dd>
@@ -557,7 +642,7 @@ footer a{margin:0 .5rem}
             <dt>責任者</dt><dd>寺地　葵</dd>
           </dl>
         </div>
-      </div>
+      </details>
     </div>
   </section>
 
