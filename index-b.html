@@ -39,7 +39,7 @@
   --maxw:960px;
 }
 *{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth}
+html{background:var(--kinari);scroll-behavior:smooth}
 body{
   font-family:'Zen Kaku Gothic New',sans-serif;
   color:var(--sumi);
@@ -48,9 +48,6 @@ body{
 }
 img{max-width:100%;display:block}
 a{color:inherit}
-/* LINEなどアプリ内ブラウザが背景を暗く上書きするのを防ぐ
-   （最背面に背景色の層を敷いて、色が消えないようにする） */
-body::before{content:"";position:fixed;inset:0;background:var(--kinari);z-index:-1}
 :focus-visible{outline:3px solid var(--orange);outline-offset:3px;border-radius:4px}
 @media (prefers-reduced-motion: reduce){
   html{scroll-behavior:auto}
@@ -350,7 +347,8 @@ details.fold[open]>summary{border-bottom:1px solid rgba(237,80,40,.14)}
 .foot-cta .cta-note{font-size:.85rem;opacity:.92;margin-bottom:1.8rem}
 .foot-cta .cta-row{justify-content:center}
 .foot-cta .btn-tel{background:#fff;color:var(--orange)}
-footer{text-align:center;font-size:.8rem;padding:1.5rem 1.2rem 6rem;opacity:.75}
+main{background:var(--kinari)}
+footer{background:var(--kinari);text-align:center;font-size:.8rem;padding:1.5rem 1.2rem 6rem;opacity:.75}
 footer a{margin:0 .5rem}
 
 /* news */
@@ -512,7 +510,7 @@ footer a{margin:0 .5rem}
         <div class="bodycheck-text">
           <h3>健康チェックシートをお渡ししています</h3>
           <p>わんちゃん・ねこちゃんの体重や健康状態を、健康チェックシートに記載してお渡ししています。</p>
-          <p class="small">※大型犬のわんちゃんの体重も測れます。</p>
+          <p class="small">※大型犬のわんちゃんの体重も測れます。<br>※イージーシャンプーをご利用の場合はお渡ししておりません。</p>
         </div>
       </div>
 

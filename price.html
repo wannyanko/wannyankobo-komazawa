@@ -31,11 +31,9 @@
   --yellow:#f7b500;--usuoge:#f0e4d4;--line:#06c755;--maxw:820px;
 }
 *{margin:0;padding:0;box-sizing:border-box}
+html{background:var(--kinari)}
 body{font-family:'Zen Kaku Gothic New',sans-serif;color:var(--sumi);background:var(--kinari);line-height:1.8;font-size:16px}
 a{color:inherit}
-/* LINEなどアプリ内ブラウザが背景を暗く上書きするのを防ぐ
-   （最背面に背景色の層を敷いて、色が消えないようにする） */
-body::before{content:"";position:fixed;inset:0;background:var(--kinari);z-index:-1}
 :focus-visible{outline:3px solid var(--orange);outline-offset:3px;border-radius:4px}
 
 header{position:sticky;top:0;z-index:50;background:rgba(250,246,238,.94);backdrop-filter:blur(6px);border-bottom:1px solid rgba(237,80,40,.25)}
@@ -44,7 +42,7 @@ header{position:sticky;top:0;z-index:50;background:rgba(250,246,238,.94);backdro
 .logo small{font-size:.82rem;display:block;letter-spacing:.12em;color:var(--sumi);opacity:.9}
 .back-home{text-decoration:none;font-size:.85rem;font-weight:500;color:var(--orange)}
 
-.wrap{max-width:var(--maxw);margin:0 auto;padding:2.5rem 1.2rem 5rem}
+.wrap{background:var(--kinari);max-width:var(--maxw);margin:0 auto;padding:2.5rem 1.2rem 5rem}
 .en{font-size:.78rem;letter-spacing:.3em;color:var(--orange);text-transform:uppercase;display:block;margin-bottom:.4rem;font-weight:700}
 h1{font-family:'Kiwi Maru',serif;font-weight:500;font-size:clamp(1.5rem,4vw,2rem);color:var(--sumi);margin-bottom:1rem}
 .intro{font-size:.9rem;margin-bottom:1.4rem}
