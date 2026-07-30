@@ -48,6 +48,7 @@ body{
 }
 img{max-width:100%;display:block}
 a{color:inherit}
+a,button{touch-action:manipulation}
 :focus-visible{outline:3px solid var(--orange);outline-offset:3px;border-radius:4px}
 @media (prefers-reduced-motion: reduce){
   html{scroll-behavior:auto}
@@ -126,7 +127,7 @@ nav a:hover{color:var(--orange)}
   border-radius:999px;padding:.85rem 1.8rem;font-size:1rem;
   transition:transform .15s ease,opacity .15s ease;
 }
-.btn:hover{transform:translateY(-2px);opacity:.92}
+@media (hover:hover){ .btn:hover{transform:translateY(-2px);opacity:.92} }
 .btn-line{background:var(--line);color:#fff}
 .btn-tel{background:var(--orange);color:#fff}
 .btn svg{width:1.2em;height:1.2em;fill:currentColor}
@@ -310,7 +311,7 @@ details.fold[open]>summary{border-bottom:1px solid rgba(237,80,40,.14)}
   border:2px solid var(--orange);border-radius:16px;
   padding:1.4rem 1.5rem;transition:transform .15s ease;
 }
-.sns-main:hover{transform:translateY(-3px)}
+@media (hover:hover){ .sns-main:hover{transform:translateY(-3px)} }
 .sns-icon{flex-shrink:0;color:var(--orange)}
 .sns-icon svg{width:38px;height:38px;display:block}
 .sns-body{flex:1;min-width:0}
