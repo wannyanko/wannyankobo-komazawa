@@ -169,17 +169,17 @@ section{padding:4rem 1.2rem}
   margin-top:1.6rem;padding-top:1.2rem;border-top:1px solid rgba(237,80,40,.15);
 }
 .ph-face{
-  width:74px;height:74px;border-radius:50%;flex-shrink:0;
+  width:96px;height:96px;border-radius:50%;flex-shrink:0;
   background:repeating-linear-gradient(45deg,rgba(237,80,40,.08) 0 10px,rgba(237,80,40,.03) 10px 20px);
   border:1px dashed rgba(237,80,40,.4);
   display:grid;place-items:center;
   color:var(--orange-d);font-size:.68rem;line-height:1.4;text-align:center;
 }
-img.ph-face{border:none;background:none;object-fit:cover}
+img.ph-face{border:2px solid #fff;background:none;object-fit:cover;box-shadow:0 3px 10px rgba(58,42,32,.16)}
 .story-sign{font-size:.85rem;opacity:.85;text-align:left;line-height:1.7}
 @media (max-width:520px){
   .story-author{gap:.8rem}
-  .ph-face{width:62px;height:62px}
+  .ph-face{width:76px;height:76px}
   .story-sign{font-size:.8rem}
 }
 .concept p{font-size:.98rem}
@@ -195,6 +195,7 @@ img.ph-face{border:none;background:none;object-fit:cover}
 /* trimming */
 .tri{display:grid;grid-template-columns:1fr 1fr;gap:2.4rem;align-items:center}
 .tri-media .ph{aspect-ratio:1/1}
+.tri-photo{width:100%;height:auto;border-radius:14px;display:block;box-shadow:0 6px 18px rgba(58,42,32,.10)}
 .kodawari{display:grid;gap:1.2rem}
 .kodawari article{background:#fff;border-radius:14px;padding:1.4rem;border:1px solid rgba(237,80,40,.18)}
 .kodawari .num{font-family:'Kiwi Maru',serif;color:var(--orange);font-size:1rem;display:inline-block;margin-right:.4rem}
@@ -421,8 +422,8 @@ footer a{margin:0 .5rem}
       <h2 class="sec-title">駒沢店は、スタッフ一人体制です</h2>
       <div class="tri">
         <div class="tri-media">
-          <!-- 写真差し替え：この div を <img src="xxx.jpg" alt="トリミングの様子" style="border-radius:14px"> に置き換えてください -->
-          <div class="ph">店内・施術風景の写真<br>（後で差し替え）</div>
+          <!-- 写真を差し替えるときは src="salon-trimming.jpg" のファイル名を変えてください -->
+          <img src="salon-trimming.jpg" alt="駒沢店でのトリミングの様子" class="tri-photo" loading="lazy">
         </div>
         <div class="kodawari">
           <article><span class="num">一、</span><h3>最初から最後まで、一人の担当で</h3><p>1日を通してスタッフ一人体制。カウンセリングから仕上げまで同じ担当が受け持つので、その子の様子を最後まで見届けられます。</p></article>
@@ -447,8 +448,8 @@ footer a{margin:0 .5rem}
         </div>
         <p class="story-land">待つ時間をつくらず、最初から最後まで同じ人間が見守る<br>別の形の「<em>二番目のお家</em>」のような時間を。</p>
         <div class="story-author">
-          <!-- 写真差し替え：下の div を <img src="staff.jpg" alt="駒沢店店長" class="ph-face"> に置き換えてください -->
-          <div class="ph-face">担当トリマー<br>の写真</div>
+          <!-- 写真を差し替えるときは src="staff.jpg" のファイル名を変えてください -->
+          <img src="staff.jpg" alt="駒沢店店長" class="ph-face" loading="lazy">
           <p class="story-sign">株式会社わんにゃん工房<br>代表取締役／駒沢店店長　寺地　葵</p>
         </div>
       </div>
