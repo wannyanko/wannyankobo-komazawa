@@ -114,6 +114,7 @@ nav a:hover{color:var(--orange)}
 .hero-main h1{font-family:'Kiwi Maru',serif;font-size:clamp(1.5rem,3.5vw,2rem);font-weight:500;margin-bottom:.6rem}
 .hero-main p{max-width:34em;margin-bottom:1.8rem}
 .hero-lead{font-size:1.02rem;line-height:1.9}
+.hero-lead span{display:inline-block}
 .br-pc{display:none}
 @media (min-width:641px){ .br-pc{display:inline} }
 .cta-row{display:flex;flex-wrap:wrap;gap:.8rem}
@@ -160,6 +161,7 @@ section{padding:4rem 1.2rem}
   padding-top:1.4rem;border-top:1px solid rgba(237,80,40,.3);
 }
 .story-land em{font-style:normal;color:var(--sumi)}
+.story-land span{display:inline-block}
 .story-author{
   display:flex;align-items:center;justify-content:flex-end;gap:1rem;
   margin-top:1.6rem;padding-top:1.2rem;border-top:1px solid rgba(237,80,40,.15);
@@ -173,6 +175,7 @@ section{padding:4rem 1.2rem}
 }
 img.ph-face{border:2px solid #fff;background:none;object-fit:cover;box-shadow:0 3px 10px rgba(58,42,32,.16)}
 .story-sign{font-size:.85rem;opacity:.85;text-align:left;line-height:1.7}
+.story-sign span{display:inline-block}
 @media (max-width:520px){
   .story-author{gap:.8rem}
   .ph-face{width:76px;height:76px}
@@ -342,6 +345,7 @@ details.fold[open]>summary{border-bottom:1px solid rgba(237,80,40,.14)}
 .foot-cta .en{color:#ffe;opacity:.9}
 .foot-cta p{max-width:36em;margin:0 auto 1rem}
 .foot-cta .cta-note{font-size:.85rem;opacity:.92;margin-bottom:1.8rem}
+@media (max-width:560px){ .foot-cta p{text-align:left} }
 .foot-cta .cta-row{justify-content:center}
 .foot-cta .btn-tel{background:#fff;color:var(--orange)}
 main{background:var(--kinari)}
@@ -405,7 +409,7 @@ footer a{margin:0 .5rem}
     <div class="hero-main">
       <span class="place">東京・世田谷／駒沢</span>
       <h1>わんにゃん工房 駒沢店</h1>
-      <p class="hero-lead">駒沢のプライベートトリミングサロン。<br class="br-pc">完全予約制で、一度に一頭ずつお迎えします。</p>
+      <p class="hero-lead"><span>駒沢のプライベートトリミングサロン。</span><br class="br-pc"><span>完全予約制で、一度に一頭ずつお迎えします。</span></p>
       <div class="cta-row">
         <a class="btn btn-line" href="https://lin.ee/X6eWV7C">
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2C6.48 2 2 5.64 2 10.1c0 3.99 3.54 7.33 8.32 7.97.32.07.77.21.88.49.1.25.07.65.03.9l-.14.86c-.04.25-.2 1 .87.55 1.07-.46 5.78-3.4 7.89-5.83C21.4 13.35 22 11.8 22 10.1 22 5.64 17.52 2 12 2z"/></svg>
@@ -450,11 +454,11 @@ footer a{margin:0 .5rem}
           <p>そうした子たちのために、その子だけの時間を用意できる場所があってもいいのではないかと考えるようになりました。</p>
           <p>駒沢店は、1日の営業をスタッフ一人で行っています。お預かりするのは一度に一頭。</p>
         </div>
-        <p class="story-land">待つ時間をつくらず、最初から最後まで同じ人間が見守る<br>別の形の「<em>二番目のお家</em>」のような時間を。</p>
+        <p class="story-land"><span>待つ時間をつくらず、</span><span>最初から最後まで同じ人間が見守る</span><br><span>別の形の「<em>二番目のお家</em>」のような</span><span>時間を。</span></p>
         <div class="story-author">
           <!-- 写真を差し替えるときは src="staff.jpg" のファイル名を変えてください -->
           <img src="staff.jpg" alt="駒沢店店長" class="ph-face" loading="lazy">
-          <p class="story-sign">株式会社わんにゃん工房<br>代表取締役／駒沢店店長　寺地　葵</p>
+          <p class="story-sign">株式会社わんにゃん工房<br><span>代表取締役／駒沢店店長</span>　<span>寺地　葵</span></p>
         </div>
       </div>
     </div>
