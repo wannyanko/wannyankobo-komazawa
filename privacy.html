@@ -60,6 +60,10 @@ li::before{content:"・";position:absolute;left:0;color:var(--orange)}
 @media (max-width:520px){ .box dl{grid-template-columns:1fr;gap:0} .box dt{margin-top:.6rem} }
 
 .note{font-size:.85rem;background:rgba(237,80,40,.06);border-left:3px solid var(--orange);border-radius:0 8px 8px 0;padding:.9rem 1.2rem;margin-bottom:1rem}
+.exlinks{font-size:.88rem;margin:0 0 1rem;list-style:none}
+.exlinks li{padding-left:1.1rem;margin-bottom:.5rem}
+.exlinks li::before{content:"›";color:var(--orange)}
+.exlinks a{color:var(--orange-d);text-decoration:underline;word-break:break-all}
 .date{font-size:.85rem;opacity:.8;margin-top:2.5rem;text-align:right}
 
 footer{text-align:center;font-size:.8rem;padding:2rem 1.2rem;opacity:.75;border-top:1px solid rgba(237,80,40,.18)}
@@ -123,14 +127,15 @@ footer a{color:var(--orange);text-decoration:none;margin:0 .5rem}
   </ul>
   <p class="note">
     ご提供いただく情報は、ご利用のサービスによって異なります。
-    ペットホテル・送迎の取り扱いは店舗によって異なりますので、詳しくは各店舗へお問い合わせください。
+    なお、ペットホテルおよび送迎は青葉台店のみで行っており、駒沢店では取り扱っておりません。
+    詳しくは各店舗へお問い合わせください。
   </p>
 
   <h3>自動的に取得する情報</h3>
   <p>
     当ウェブサイトのご利用にあたり、閲覧されたページ、ご利用の端末やブラウザの種類、
     IPアドレス、アクセス日時などの情報を自動的に取得することがあります。
-    これらの情報から、お客様個人を特定することはありません。
+    これらの情報は、単体でお客様個人を特定するものではありません。
   </p>
 
   <h2>3. 利用目的</h2>
@@ -142,6 +147,8 @@ footer a{color:var(--orange);text-decoration:none;margin:0 .5rem}
     <li>ペットホテルご利用中のお世話、お食事・お薬の管理、ご様子のご報告</li>
     <li>送迎の実施およびご連絡</li>
     <li>施術中・お預かり中に体調の変化等があった場合の緊急のご連絡</li>
+    <li>施術中・お預かり中の緊急時における、かかりつけの動物病院への連絡、およびわんちゃん・ねこちゃんの状態に関する情報の提供</li>
+    <li>送迎中に事故等が発生した場合における、保険会社その他の関係先への必要な情報の提供</li>
     <li>お問い合わせへの回答</li>
     <li>当社からのお知らせ、ご案内の送付</li>
     <li>ウェブサイトの利用状況の分析、およびサービス向上のための検討</li>
@@ -155,16 +162,10 @@ footer a{color:var(--orange);text-decoration:none;margin:0 .5rem}
   </p>
   <ul>
     <li>法令に基づく場合</li>
-    <li>人の生命、身体または財産の保護のために必要があり、ご本人の同意を得ることが困難な場合</li>
-    <li>お預かり中のわんちゃん・ねこちゃんに緊急の処置が必要となり、動物病院へ情報を提供する場合</li>
+    <li>人の生命、身体または財産の保護のために必要があり、ご本人の同意を得ることが困難な場合（お預かり中のわんちゃん・ねこちゃんに緊急の処置が必要となり、動物病院へ情報を提供する場合を含みます）</li>
   </ul>
 
   <h2>5. アクセス解析ツールの利用について</h2>
-  <!-- ============================================================
-       ★この項目は、Googleアナリティクスを導入したときに有効です。
-        導入するまでは、この「5.」の見出しから次の <h2> の直前までを
-        削除するか、コメントアウトしてください。
-       ============================================================ -->
   <p>
     当ウェブサイトでは、サービス向上のため、Google LLC が提供するアクセス解析ツール
     「Google アナリティクス」を利用しています。
@@ -174,13 +175,18 @@ footer a{color:var(--orange);text-decoration:none;margin:0 .5rem}
     収集される情報にお客様個人を特定するものは含まれず、Google 社のプライバシーポリシーに基づいて管理されます。
   </p>
   <p>
+    Google アナリティクスにより収集された情報は、Google LLC が管理する米国その他の国のサーバーへ
+    送信され、保管される場合があります。同社における情報の取り扱いについては、
+    同社のプライバシーポリシーをご確認ください。
+  </p>
+  <ul class="exlinks">
+    <li><a href="https://policies.google.com/privacy?hl=ja" target="_blank" rel="noopener">Google プライバシーポリシー</a></li>
+  </ul>
+  <p>
     Google アナリティクスによるデータ収集を停止されたい場合は、Google 社が提供する
     「Google アナリティクス オプトアウト アドオン」をご利用いただくか、
     ブラウザの設定で Cookie を無効にしてください。
   </p>
-  <div class="note">
-    Google アナリティクスの利用規約およびプライバシーポリシーについては、Google 社のウェブサイトをご確認ください。
-  </div>
 
   <h2>6. Cookie（クッキー）について</h2>
   <p>
@@ -200,20 +206,45 @@ footer a{color:var(--orange);text-decoration:none;margin:0 .5rem}
     <li><strong>LINE公式アカウント</strong>（LINEヤフー株式会社）／ご予約・お問い合わせの受付のため</li>
   </ul>
   <p>
+    Google マップおよび Google Fonts のご利用にあたっては、送信された情報が Google LLC の
+    管理する米国その他の国のサーバーへ送信され、保管される場合があります。
+  </p>
+  <p>
     各サービスにおける情報の取り扱いについては、それぞれの提供者が定めるプライバシーポリシーをご確認ください。
   </p>
+  <ul class="exlinks">
+    <li><a href="https://policies.google.com/privacy?hl=ja" target="_blank" rel="noopener">Google プライバシーポリシー</a></li>
+    <li><a href="https://www.lycorp.co.jp/ja/company/privacypolicy/" target="_blank" rel="noopener">LINEヤフー プライバシーポリシー</a></li>
+  </ul>
 
   <h2>8. 安全管理措置</h2>
   <p>
     当社は、お客様の個人情報への不正アクセス、紛失、破壊、改ざん、漏えい等を防止するため、
-    必要かつ適切な安全管理措置を講じます。また、個人情報を取り扱う従業者に対し、
-    必要かつ適切な監督を行います。
+    次のとおり必要かつ適切な安全管理措置を講じます。
+  </p>
+  <ul>
+    <li>個人情報の取り扱いに関する留意事項を従業者に周知し、必要な教育および監督を行っています</li>
+    <li>個人情報が記載された書類は、施錠可能な場所に保管しています</li>
+    <li>個人情報を取り扱う機器にウイルス対策ソフトを導入する等により、外部からの不正アクセスを防止しています</li>
+  </ul>
+  <p>
+    安全管理措置の具体的な内容につきましては、第11項のお問い合わせ窓口までご連絡いただければご説明いたします。
   </p>
 
   <h2>9. 開示・訂正・利用停止等のご請求</h2>
   <p>
     お客様は、当社が保有するご自身の個人情報について、開示、訂正、追加、削除、利用停止等をご請求いただけます。
-    ご請求の際は、下記のお問い合わせ窓口までご連絡ください。
+    ご請求は、次のとおり承ります。
+  </p>
+  <div class="box">
+    <dl>
+      <dt>ご請求の方法</dt><dd>第11項の各店舗窓口にて、お電話またはご来店により承ります。</dd>
+      <dt>提出先</dt><dd>ご請求の対象となる情報をお預かりしている店舗</dd>
+      <dt>ご本人の確認方法</dt><dd>ご来店の場合は運転免許証等の本人確認書類を確認させていただきます。お電話の場合は、当社にご登録いただいている情報との照合により確認させていただきます。</dd>
+      <dt>手数料</dt><dd>無料です。</dd>
+    </dl>
+  </div>
+  <p>
     ご本人であることを確認させていただいたうえで、法令に従い、速やかに対応いたします。
   </p>
 
@@ -224,7 +255,7 @@ footer a{color:var(--orange);text-decoration:none;margin:0 .5rem}
   </p>
 
   <h2>11. お問い合わせ窓口</h2>
-  <p>個人情報の取り扱いに関するお問い合わせ、および開示等のご請求は、各店舗にて承ります。</p>
+  <p>個人情報の取り扱いに関するお問い合わせ、開示等のご請求、および個人情報の取り扱いに関する苦情のお申出は、いずれも下記の各店舗窓口にて承ります。</p>
   <div class="box">
     <dl>
       <dt>駒沢店</dt><dd>〒154-0014 東京都世田谷区新町2-2-22 1F（NIビル）<br><a href="tel:0368240187">03-6824-0187</a><br>10:00〜19:00（当日のご予約が終わり次第 営業終了）／月曜・ほか不定休</dd>
@@ -236,7 +267,7 @@ footer a{color:var(--orange);text-decoration:none;margin:0 .5rem}
     <strong>LINEでのお問い合わせもご利用ください。</strong>
   </div>
 
-  <p class="date">制定日：2026年8月7日</p>
+  <p class="date">制定日：2026年8月7日<br>改定日：2026年8月11日</p>
 </div>
 
 <footer>
