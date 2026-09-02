@@ -113,7 +113,7 @@
 
   <p class="legend" id="legend" hidden>
     数字は空いている時間帯（10–17 ＝ 10時〜17時）　× 満席　休 お休み<br>
-    表示のない日は、空き状況の準備中です。
+    「—」の日は、空き状況の準備中です。
   </p>
 
   <p class="note">
@@ -239,12 +239,12 @@
   }
 
   function classify(v) {
-    if (!v) return { cls: 'none', text: '' };
+    if (!v) return { cls: 'none', text: '—' };
     if (/^(満|受付終了|×|x|X)/.test(v)) return { cls: 'full', text: '×' };
     if (/^(休|定)/.test(v))            return { cls: 'off',  text: '休' };
     if (/\d/.test(v))                  return { cls: 'open', text: compact(v), open: true, raw: v };
     if (/^空/.test(v))                 return { cls: 'open', text: '空き', open: true, raw: '' };
-    return { cls: 'none', text: '' };
+    return { cls: 'none', text: '—' };
   }
 
   function render(map) {
