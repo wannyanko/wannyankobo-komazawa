@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, follow">
+<title>予約空き状況｜わんにゃん工房 駒沢店</title>
+<meta name="description" content="わんにゃん工房 駒沢店の予約空き状況です。ご予約・最新の空き状況はLINEでお問い合わせください。">
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-P2XE9ED5T3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-P2XE9ED5T3');
+</script>
+
+<style>
+  html, body { background:#faf7f0; }
+  body{
+    margin:0;
+    color:#4a3728;
+    font-family:"Hiragino Sans","Hiragino Kaku Gothic ProN","Noto Sans JP",sans-serif;
+    -webkit-text-size-adjust:100%;
+    line-height:1.7;
+  }
+  .wrap{ background:#faf7f0; max-width:620px; margin:0 auto; padding:28px 16px 56px; }
+
+  .back{ display:inline-block; font-size:.82rem; color:#8a7a6a; text-decoration:none; margin-bottom:20px; }
+  .back:hover, .back:focus{ color:#ed5028; }
+
+  h1{ font-size:1.35rem; font-weight:600; letter-spacing:.06em; margin:0 0 6px; }
+  .lead{ font-size:.85rem; color:#8a7a6a; margin:0 0 22px; }
+
+  .next{
+    border:1px solid #e5ded2; border-left:3px solid #ed5028; background:#fff;
+    padding:12px 14px; margin:0 0 26px;
+  }
+  .next .label{ display:block; font-size:.75rem; color:#8a7a6a; margin-bottom:2px; }
+  .next .value{ font-size:1rem; font-weight:600; font-variant-numeric:tabular-nums; }
+
+  .month{ margin:0 0 26px; }
+  .month h2{
+    font-size:.95rem; font-weight:600; letter-spacing:.08em;
+    margin:0 0 8px; padding-bottom:6px; border-bottom:1px solid #ded5c6;
+  }
+  table{ width:100%; border-collapse:collapse; table-layout:fixed; }
+  th{ font-size:.7rem; font-weight:600; color:#8a7a6a; padding:0 0 5px; }
+  th.sun{ color:#c0563c; }
+  th.sat{ color:#5b7a95; }
+  td{
+    border:1px solid #ece5d9; padding:4px 2px 6px;
+    text-align:center; vertical-align:top; height:50px;
+  }
+  td.out{ border-color:#f4efe6; background:transparent; }
+  .d{ display:block; font-size:.7rem; color:#8a7a6a; margin-bottom:2px; }
+  .t{
+    display:block; font-size:.72rem; line-height:1.4;
+    font-variant-numeric:tabular-nums; letter-spacing:-.02em; word-break:keep-all;
+  }
+  td.open .t{ color:#4a3728; }
+  td.full .t{ color:#4a3728; font-weight:600; }
+  td.off  .t{ color:#c2b7a9; }
+  td.none .t{ color:#d8cec0; }
+  td.today{
+    background:#fdf1ec;
+    /* border-collapse だと隣のセルの罫線に負けて左辺が消えるため、
+       枠は outline で内側に描く（レイアウトに影響しない） */
+    outline:1px solid #f0c3b2;
+    outline-offset:-1px;
+  }
+  td.today .d{ color:#ed5028; font-weight:600; }
+
+  .legend{ font-size:.72rem; color:#8a7a6a; line-height:1.9; margin:0 0 26px; }
+  .note{ font-size:.76rem; color:#8a7a6a; line-height:1.9; margin:0 0 22px; }
+
+  .cta{
+    display:block; text-align:center; padding:14px 20px;
+    background:#ed5028; color:#fff; text-decoration:none;
+    border-radius:4px; font-size:.92rem; font-weight:600; letter-spacing:.04em;
+  }
+  .cta:focus-visible, .back:focus-visible{ outline:2px solid #ed5028; outline-offset:2px; }
+  .tel{ display:block; text-align:center; margin-top:12px; font-size:.8rem; color:#8a7a6a; }
+  .tel a{ color:#4a3728; }
+
+  .fallback{
+    border:1px solid #e5ded2; background:#fff; padding:18px 16px;
+    margin:0 0 22px; font-size:.85rem; line-height:1.9;
+  }
+  .fallback b{ display:block; margin-bottom:4px; }
+
+  @media (max-width:360px){
+    td{ height:46px; }
+    .t{ font-size:.66rem; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <a class="back" href="index.html">わんにゃん工房 駒沢店 トップへ</a>
+
+  <h1>予約空き状況</h1>
+  <p class="lead">先のご予約もお取りいただけます。表示は目安です。</p>
+
+  <div id="next" class="next" hidden>
+    <span class="label">最短でお受けできる日</span>
+    <span class="value" id="nextValue"></span>
+  </div>
+
+  <div id="calendar"></div>
+
+  <p class="legend" id="legend" hidden>
+    数字は空いている時間帯（10–17 ＝ 10時〜17時）　× 満席　休 お休み<br>
+    表示のない日は、空き状況の準備中です。
+  </p>
+
+  <p class="note">
+    掲載の時間帯は目安です。お問い合わせの時点でご予約が入っている場合があります。<br>
+    犬種・コースによっては、ご希望の日にお受けできないことがあります。<br>
+    担当　寺地：月・金・土・日／松下：火・水・木
+  </p>
+
+  <a class="cta" href="https://lin.ee/X6eWV7C">LINEで予約する</a>
+  <span class="tel">お電話でも承ります　<a href="tel:0368240187">03-6824-0187</a>（施術中は出られない場合があります）</span>
+
+</div>
+
+<script>
+(function () {
+  'use strict';
+
+  /* ===== 設定 =================================================
+     csvUrl    : スプレッドシート「HP用」タブをウェブに公開したCSVのURL
+                 空のままだとサンプルデータで表示します（プレビュー用）
+     daysAhead : 今日から何日先まで表示するか
+     ============================================================ */
+  var CONFIG = {
+    csvUrl: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRYFUOrz3z3He0TCDjMYd9meIa4h08msfsPhJVOWTdBRkLzcm9xPcSn7vZ000H3bMhvf2v9wrHcg_7G/pub?gid=1749303982&single=true&output=csv',
+    daysAhead: 60
+  };
+
+  /* シートは「日付」「空き時間」の2列だけ。
+     空き時間の欄に、時間帯・満席・休み のいずれかを書く。 */
+  var SAMPLE = [
+    '日付,空き時間',
+    '2026-09-02,10時〜17時',
+    '2026-09-03,10時〜13時',
+    '2026-09-04,10時〜17時',
+    '2026-09-05,満席',
+    '2026-09-06,14時〜17時',
+    '2026-09-07,休み',
+    '2026-09-08,10時〜17時',
+    '2026-09-09,10時〜12時／14時〜17時',
+    '2026-09-10,10時〜17時',
+    '2026-09-11,満席',
+    '2026-09-12,満席',
+    '2026-09-13,10時〜14時',
+    '2026-09-14,休み',
+    '2026-09-15,10時〜17時',
+    '2026-09-16,10時〜17時',
+    '2026-09-17,10時〜15時／16時30〜17時',
+    '2026-09-18,13時〜17時',
+    '2026-09-19,満席',
+    '2026-09-20,10時〜17時',
+    '2026-09-21,休み',
+    '2026-09-22,10時〜17時',
+    '2026-09-23,10時〜17時',
+    '2026-09-24,10時〜17時',
+    '2026-09-25,10時〜17時',
+    '2026-09-26,満席',
+    '2026-09-27,10時〜17時',
+    '2026-09-28,休み',
+    '2026-09-29,10時〜17時',
+    '2026-09-30,10時〜17時',
+    '2026-10-01,10時〜17時',
+    '2026-10-02,受付終了',
+    '2026-10-03,休み',
+    '2026-10-04,休み',
+    '2026-10-05,10時〜14時',
+    '2026-10-06,10時〜17時',
+    '2026-10-07,10時〜17時',
+    '2026-10-08,10時〜17時',
+    '2026-10-09,10時〜／14時〜17時',
+    '2026-10-10,10時〜17時',
+    '2026-10-11,10時〜17時',
+    '2026-10-12,10時〜17時',
+    '2026-10-13,10時〜／17時〜',
+    '2026-10-14,10時〜17時',
+    '2026-10-15,10時〜17時',
+    '2026-10-16,10時〜17時',
+    '2026-10-17,10時〜／16時30〜',
+    '2026-10-18,11時30〜17時',
+    '2026-10-19,17時〜',
+    '2026-10-20,10時〜／17時〜',
+    '2026-10-21,10時〜17時',
+    '2026-10-22,10時〜17時',
+    '2026-10-23,10時〜17時',
+    '2026-10-24,10時〜17時',
+    '2026-10-25,10時〜17時',
+    '2026-10-26,17時〜',
+    '2026-10-27,10時〜／17時〜',
+    '2026-10-28,10時〜17時',
+    '2026-10-29,10時〜17時',
+    '2026-10-30,10時〜17時',
+    '2026-10-31,10時〜17時'
+  ].join('\n');
+
+  var WDAY = ['日', '月', '火', '水', '木', '金', '土'];
+
+  function pad(n) { return (n < 10 ? '0' : '') + n; }
+  function key(d) { return d.getFullYear() + '-' + pad(d.getMonth() + 1) + '-' + pad(d.getDate()); }
+
+  function parseCsv(text) {
+    var map = {};
+    var lines = text.replace(/\r/g, '').split('\n');
+    for (var i = 0; i < lines.length; i++) {
+      var line = lines[i].trim();
+      if (!line) continue;
+      var cols = (line.match(/("[^"]*"|[^,]*)(,|$)/g) || []).map(function (c) {
+        return c.replace(/,$/, '').replace(/^"|"$/g, '').trim();
+      });
+      var raw = cols[0];
+      if (!raw || raw === '日付') continue;
+      var m = raw.match(/^(\d{4})[-\/](\d{1,2})[-\/](\d{1,2})/);
+      if (!m) continue;
+      map[m[1] + '-' + pad(+m[2]) + '-' + pad(+m[3])] = cols[1] || '';
+    }
+    return map;
+  }
+
+  /* 「10時〜17時」→「10–17」 / 「16時30〜17時」→「16:30–17」 */
+  function compact(s) {
+    return s.replace(/(\d+)\s*時\s*(\d+)\s*分?/g, '$1:$2')
+            .replace(/(\d+)\s*時/g, '$1')
+            .replace(/[〜~]/g, '–')
+            .replace(/\s+/g, '');
+  }
+
+  function classify(v) {
+    if (!v) return { cls: 'none', text: '' };
+    if (/^(満|受付終了|×|x|X)/.test(v)) return { cls: 'full', text: '×' };
+    if (/^(休|定)/.test(v))            return { cls: 'off',  text: '休' };
+    if (/\d/.test(v))                  return { cls: 'open', text: compact(v), open: true, raw: v };
+    if (/^空/.test(v))                 return { cls: 'open', text: '空き', open: true, raw: '' };
+    return { cls: 'none', text: '' };
+  }
+
+  function render(map) {
+    var cal = document.getElementById('calendar');
+    cal.textContent = '';
+
+    var today = new Date();
+    today.setHours(0, 0, 0, 0);
+    var last = new Date(today);
+    last.setDate(last.getDate() + CONFIG.daysAhead - 1);
+
+    var firstOpen = null;
+    var cursor = new Date(today.getFullYear(), today.getMonth(), 1);
+    var guard = 0;
+
+    while (cursor <= last && guard++ < 24) {
+      var y = cursor.getFullYear(), mo = cursor.getMonth();
+      var daysInMonth = new Date(y, mo + 1, 0).getDate();
+
+      var block = document.createElement('section');
+      block.className = 'month';
+
+      var h2 = document.createElement('h2');
+      h2.textContent = y + '年 ' + (mo + 1) + '月';
+      block.appendChild(h2);
+
+      var table = document.createElement('table');
+      var head = document.createElement('tr');
+      for (var w = 0; w < 7; w++) {
+        var th = document.createElement('th');
+        th.textContent = WDAY[w];
+        if (w === 0) th.className = 'sun';
+        if (w === 6) th.className = 'sat';
+        head.appendChild(th);
+      }
+      table.appendChild(head);
+
+      var row = document.createElement('tr');
+      var lead = new Date(y, mo, 1).getDay();
+      for (var b = 0; b < lead; b++) {
+        var blank = document.createElement('td');
+        blank.className = 'out';
+        row.appendChild(blank);
+      }
+
+      for (var day = 1; day <= daysInMonth; day++) {
+        var date = new Date(y, mo, day);
+        var td = document.createElement('td');
+
+        if (date < today || date > last) {
+          td.className = 'out';
+        } else {
+          var info = classify(map[key(date)]);
+          td.className = info.cls;
+          if (date.getTime() === today.getTime()) td.className += ' today';
+
+          var dSpan = document.createElement('span');
+          dSpan.className = 'd';
+          dSpan.textContent = String(day);
+          td.appendChild(dSpan);
+
+          var tSpan = document.createElement('span');
+          tSpan.className = 't';
+          var parts = info.text.split('／');
+          for (var p = 0; p < parts.length; p++) {
+            if (p > 0) tSpan.appendChild(document.createElement('br'));
+            tSpan.appendChild(document.createTextNode(parts[p]));
+          }
+          td.appendChild(tSpan);
+
+          if (info.open && !firstOpen) firstOpen = { date: date, raw: info.raw };
+        }
+
+        row.appendChild(td);
+        if (date.getDay() === 6) {
+          table.appendChild(row);
+          row = document.createElement('tr');
+        }
+      }
+
+      if (row.children.length) {
+        while (row.children.length < 7) {
+          var tail = document.createElement('td');
+          tail.className = 'out';
+          row.appendChild(tail);
+        }
+        table.appendChild(row);
+      }
+
+      block.appendChild(table);
+      cal.appendChild(block);
+      cursor = new Date(y, mo + 1, 1);
+    }
+
+    if (firstOpen) {
+      var d = firstOpen.date;
+      var label = (d.getMonth() + 1) + '月' + d.getDate() + '日（' + WDAY[d.getDay()] + '）';
+      if (firstOpen.raw) label += '　' + firstOpen.raw;
+      document.getElementById('nextValue').textContent = label;
+      document.getElementById('next').hidden = false;
+    }
+    document.getElementById('legend').hidden = false;
+  }
+
+  function showFallback() {
+    var cal = document.getElementById('calendar');
+    cal.textContent = '';
+    var box = document.createElement('div');
+    box.className = 'fallback';
+    var b = document.createElement('b');
+    b.textContent = '予約空き状況を読み込めませんでした';
+    box.appendChild(b);
+    box.appendChild(document.createTextNode(
+      'お使いの環境によっては表示されないことがあります。下のボタンからLINEでお問い合わせください。折り返し空き状況をお伝えします。'
+    ));
+    cal.appendChild(box);
+  }
+
+  function start() {
+    if (!CONFIG.csvUrl) { render(parseCsv(SAMPLE)); return; }
+
+    var done = false;
+    var timer = setTimeout(function () {
+      if (!done) { done = true; showFallback(); }
+    }, 8000);
+
+    fetch(CONFIG.csvUrl, { cache: 'no-store' })
+      .then(function (res) {
+        if (!res.ok) throw new Error('status ' + res.status);
+        return res.text();
+      })
+      .then(function (text) {
+        if (done) return;
+        done = true; clearTimeout(timer);
+        var map = parseCsv(text);
+        if (!Object.keys(map).length) { showFallback(); return; }
+        render(map);
+      })
+      .catch(function () {
+        if (done) return;
+        done = true; clearTimeout(timer);
+        showFallback();
+      });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', start);
+  } else {
+    start();
+  }
+})();
+</script>
+</body>
+</html>

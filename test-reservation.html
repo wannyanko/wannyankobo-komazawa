@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- ブラウザの自動ダークモードで色が崩れるのを防ぐ（ライトモード専用の宣言） -->
+<meta name="color-scheme" content="light">
+<!-- ★テスト用ページ：確認が終わったらこのファイルは削除してください★ -->
+<meta name="robots" content="noindex, nofollow">
+<title>ご予約・ご相談｜わんにゃん工房 駒沢店</title>
+<meta name="description" content="わんにゃん工房 駒沢店のご予約・ご相談ページ。LINEまたはお電話で承ります。">
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="わんにゃん工房 駒沢店">
+<meta property="og:title" content="ご予約・ご相談｜わんにゃん工房 駒沢店">
+<meta property="og:description" content="ご予約はLINEまたはお電話で承ります。犬種・猫種とお写真をお送りいただければ、おおよその料金と所要時間をお答えします。">
+<meta property="og:url" content="https://wannyankobokomazawa.com/reservation.html">
+<meta property="og:image" content="https://wannyankobokomazawa.com/og-image.png">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Kiwi+Maru:wght@400;500&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  color-scheme:only light;
+  --sumi:#3a2a20;--kinari:#faf6ee;--orange:#ed5028;--yellow:#f7b500;--line:#06c755}
+*{margin:0;padding:0;box-sizing:border-box}
+html{background:var(--kinari)}
+body{font-family:'Zen Kaku Gothic New',sans-serif;color:var(--sumi);background:var(--kinari);line-height:1.9;font-size:16px}
+:focus-visible{outline:3px solid var(--orange);outline-offset:3px;border-radius:4px}
+.wrap{background:var(--kinari);max-width:460px;margin:0 auto;padding:clamp(1.5rem,6vh,4rem) 1.2rem}
+.card{text-align:center;background:#fff;border:1px solid rgba(237,80,40,.2);border-radius:18px;padding:2.4rem 1.6rem}
+.shop-name{font-family:'Kiwi Maru',serif;font-weight:500;color:var(--orange);font-size:1.35rem;line-height:1.5}
+.shop-name small{display:block;font-size:.88rem;letter-spacing:.2em;text-indent:.1em;color:var(--sumi);opacity:.9}
+h1{font-family:'Kiwi Maru',serif;font-weight:500;font-size:1.05rem;margin:1.2rem 0 .6rem}
+.lead{font-size:.9rem;margin-bottom:1.8rem}
+.btn{display:flex;align-items:center;justify-content:center;gap:.5rem;text-decoration:none;font-weight:700;border-radius:999px;padding:1rem 1.5rem;font-size:1.05rem;transition:transform .15s ease,opacity .15s ease}
+@media (hover:hover){ .btn:hover{transform:translateY(-2px);opacity:.92} }
+.btn svg{width:1.25em;height:1.25em;fill:currentColor;flex-shrink:0}
+@media (max-width:380px){
+  .card{padding:1.8rem 1.1rem}
+  .btn{padding:.9rem 1rem;font-size:1rem}
+}
+.btn-line{background:var(--line);color:#fff;margin-bottom:.8rem}
+.btn-tel{background:var(--orange);color:#fff}
+.tel-note{
+  font-size:.82rem;line-height:1.8;text-align:left;
+  margin-top:1rem;padding:.8rem 1rem;
+  background:rgba(237,80,40,.07);border-left:3px solid var(--orange);border-radius:0 8px 8px 0;
+}
+.tel-note strong{color:var(--orange)}
+/* 予約空き状況 */
+.avail{margin-top:1.6rem;padding-top:1.4rem;border-top:1px solid rgba(237,80,40,.18)}
+.avail h2{font-family:'Kiwi Maru',serif;font-weight:500;font-size:1rem;margin-bottom:.9rem}
+.avail-next{
+  display:block;text-align:left;background:rgba(237,80,40,.07);
+  border-left:3px solid var(--orange);border-radius:0 8px 8px 0;
+  padding:.7rem .9rem;margin-bottom:1rem;
+}
+.avail-next .lbl{display:block;font-size:.76rem;color:var(--orange);font-weight:700;line-height:1.6}
+.avail-next .val{display:block;font-size:1rem;font-weight:700;font-variant-numeric:tabular-nums;line-height:1.6}
+.avail-grid{display:grid;grid-template-columns:repeat(7,1fr);border:1px solid rgba(237,80,40,.18);border-radius:8px;overflow:hidden}
+.avail-cell{
+  border-left:1px solid rgba(237,80,40,.14);border-top:1px solid rgba(237,80,40,.14);
+  padding:.45rem .1rem .5rem;min-height:70px;background:#fff;
+}
+.avail-grid .avail-cell:nth-child(7n+1){border-left:0}
+.avail-grid .avail-cell:nth-child(-n+7){border-top:0}
+.avail-cell .w{display:block;font-size:.64rem;color:var(--orange);font-weight:700;line-height:1.4}
+.avail-cell .dd{display:block;font-size:.82rem;font-weight:700;line-height:1.5}
+.avail-cell .st{
+  display:block;font-size:.62rem;line-height:1.35;letter-spacing:-.03em;
+  font-variant-numeric:tabular-nums;word-break:keep-all;margin-top:.1rem;
+}
+.avail-cell.off{background:rgba(58,42,32,.05)}
+.avail-cell.off .st,.avail-cell.off .dd{opacity:.45}
+.avail-cell.full .st{color:var(--orange);font-weight:700}
+.avail-cell.none .st{opacity:.3}
+.avail-legend{font-size:.72rem;line-height:1.8;margin-top:.7rem;opacity:.75;text-align:left}
+.avail-fallback{
+  font-size:.85rem;line-height:1.8;text-align:left;
+  background:rgba(237,80,40,.07);padding:.9rem 1rem;border-radius:8px;
+}
+@media (max-width:380px){
+  .avail-cell{min-height:64px;padding:.4rem .05rem .45rem}
+  .avail-cell .st{font-size:.57rem}
+  .avail-cell .dd{font-size:.76rem}
+}
+
+.note{font-size:.78rem;margin-top:1.2rem;opacity:.75}
+@media (max-width:560px){ .lead,.note{text-align:left} }
+.back{display:inline-block;margin-top:1.4rem;font-size:.85rem;color:var(--orange)}
+@media (prefers-reduced-motion: reduce){*{transition:none!important}}
+</style>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-P2XE9ED5T3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-P2XE9ED5T3');
+</script>
+</head>
+<body>
+<div class="wrap">
+<main class="card">
+  <p class="shop-name">わんにゃん工房<small>駒沢店</small></p>
+  <h1>ご予約・ご相談はこちらから</h1>
+  <p class="lead">
+    LINEでは、犬種・猫種とお写真をお送りいただければ<br>
+    おおよその料金と所要時間をお答えします。
+  </p>
+  <a class="btn btn-line" href="https://lin.ee/X6eWV7C">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2C6.48 2 2 5.64 2 10.1c0 3.99 3.54 7.33 8.32 7.97.32.07.77.21.88.49.1.25.07.65.03.9l-.14.86c-.04.25-.2 1 .87.55 1.07-.46 5.78-3.4 7.89-5.83C21.4 13.35 22 11.8 22 10.1 22 5.64 17.52 2 12 2z"/></svg>
+    LINEで予約・相談する
+  </a>
+  <a class="btn btn-tel" href="tel:0368240187">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.62 10.79a15.05 15.05 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.01-.24c1.12.37 2.33.57 3.58.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1C10.61 21 3 13.39 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.46.57 3.58a1 1 0 0 1-.25 1.01l-2.2 2.2z"/></svg>
+    電話で予約する
+  </a>
+  <p class="tel-note">わんちゃん・ねこちゃん優先となり、施術中はお電話に出られない場合がございます。<strong>LINEでのお問い合わせがおすすめです。</strong></p>
+  <section class="avail">
+    <h2>予約空き状況</h2>
+
+    <div class="avail-next" id="availNext" hidden>
+      <span class="lbl">最短でお受けできる日</span>
+      <span class="val" id="availNextVal"></span>
+    </div>
+
+    <div id="availGrid"></div>
+
+    <p class="avail-legend" id="availLegend" hidden>
+      数字は空いている時間帯（10–17 ＝ 10時〜17時）　× 満席　休 お休み<br>
+      表示は目安です。お問い合わせの時点でご予約が入っている場合があります。<br>
+      犬種・コースによっては、ご希望の日にお受けできないことがあります。
+    </p>
+  </section>
+
+  <p class="note">完全予約制／10:00〜19:00（当日のご予約が終わり次第 営業終了）・月曜／ほか不定休<br>LINEは営業時間外も送信可・返信は営業時間内となります</p>
+  <a class="back" href="test-index.html">← サロンの紹介ページを見る</a>
+</main>
+</div>
+<!-- ============================================================
+     ★予約空き状況（自動表示）★
+     スプレッドシートを読んで、直近2週間ぶんを自動で表示します。
+     書き換えるのは csvUrl の1行だけです。
+     空のままだとサンプルデータが表示されます（確認用）。
+     ============================================================ -->
+<script>
+(function(){
+  'use strict';
+
+  var CONFIG = {
+    csvUrl: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRYFUOrz3z3He0TCDjMYd9meIa4h08msfsPhJVOWTdBRkLzcm9xPcSn7vZ000H3bMhvf2v9wrHcg_7G/pub?gid=1749303982&single=true&output=csv',   // ← スプレッドシート「HP用」タブの公開CSV URL
+    days: 14      // ← トップに出す日数（7日ぶんずつ改行して並びます）
+  };
+
+  var SAMPLE = [
+    '日付,空き時間',
+    '2026-09-02,10時〜17時',
+    '2026-09-03,10時〜13時',
+    '2026-09-04,10時〜17時',
+    '2026-09-05,満席',
+    '2026-09-06,14時〜17時',
+    '2026-09-07,休み',
+    '2026-09-08,10時〜17時',
+    '2026-09-09,10時〜12時／14時〜17時',
+    '2026-09-10,10時〜17時',
+    '2026-09-11,満席',
+    '2026-09-12,満席',
+    '2026-09-13,10時〜14時',
+    '2026-09-14,休み',
+    '2026-09-15,10時〜17時',
+    '2026-09-16,10時〜17時'
+  ].join('\n');
+
+  var WDAY = ['日','月','火','水','木','金','土'];
+  function pad(n){ return (n<10?'0':'')+n; }
+  function key(d){ return d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate()); }
+
+  function parseCsv(text){
+    var map={}, lines=text.replace(/\r/g,'').split('\n');
+    for(var i=0;i<lines.length;i++){
+      var line=lines[i].trim(); if(!line) continue;
+      var cols=(line.match(/("[^"]*"|[^,]*)(,|$)/g)||[]).map(function(c){
+        return c.replace(/,$/,'').replace(/^"|"$/g,'').trim();
+      });
+      var raw=cols[0]; if(!raw||raw==='日付') continue;
+      var m=raw.match(/^(\d{4})[-\/](\d{1,2})[-\/](\d{1,2})/); if(!m) continue;
+      map[m[1]+'-'+pad(+m[2])+'-'+pad(+m[3])] = cols[1]||'';
+    }
+    return map;
+  }
+
+  function compact(s){
+    return s.replace(/(\d+)\s*時\s*(\d+)\s*分?/g,'$1:$2')
+            .replace(/(\d+)\s*時/g,'$1')
+            .replace(/[〜~]/g,'–')
+            .replace(/\s+/g,'');
+  }
+
+  function classify(v){
+    if(!v) return {cls:'none',text:'—'};
+    if(/^(満|受付終了|×|x|X)/.test(v)) return {cls:'full',text:'×'};
+    if(/^(休|定)/.test(v))            return {cls:'off', text:'休'};
+    if(/\d/.test(v))                  return {cls:'open',text:compact(v),open:true,raw:v};
+    if(/^空/.test(v))                 return {cls:'open',text:'空き',open:true,raw:''};
+    return {cls:'none',text:'—'};
+  }
+
+  function render(map){
+    var box=document.getElementById('availGrid');
+    box.textContent='';
+    var grid=document.createElement('div');
+    grid.className='avail-grid';
+
+    var today=new Date(); today.setHours(0,0,0,0);
+    var firstOpen=null;
+
+    for(var i=0;i<CONFIG.days;i++){
+      var d=new Date(today); d.setDate(d.getDate()+i);
+      var info=classify(map[key(d)]);
+
+      var cell=document.createElement('div');
+      cell.className='avail-cell '+info.cls;
+
+      var w=document.createElement('span'); w.className='w';
+      w.textContent=WDAY[d.getDay()]; cell.appendChild(w);
+
+      var dd=document.createElement('span'); dd.className='dd';
+      dd.textContent=(d.getMonth()+1)+'/'+d.getDate(); cell.appendChild(dd);
+
+      var st=document.createElement('span'); st.className='st';
+      var parts=info.text.split('／');
+      for(var p=0;p<parts.length;p++){
+        if(p>0) st.appendChild(document.createElement('br'));
+        st.appendChild(document.createTextNode(parts[p]));
+      }
+      cell.appendChild(st);
+
+      grid.appendChild(cell);
+      if(info.open && !firstOpen) firstOpen={date:d,raw:info.raw};
+    }
+
+    box.appendChild(grid);
+
+    if(firstOpen){
+      var f=firstOpen.date;
+      var label=(f.getMonth()+1)+'月'+f.getDate()+'日（'+WDAY[f.getDay()]+'）';
+      if(firstOpen.raw) label+='　'+firstOpen.raw;
+      document.getElementById('availNextVal').textContent=label;
+      document.getElementById('availNext').hidden=false;
+    }
+    document.getElementById('availLegend').hidden=false;
+  }
+
+  function showFallback(){
+    var box=document.getElementById('availGrid');
+    box.textContent='';
+    var div=document.createElement('div');
+    div.className='avail-fallback';
+    div.textContent='予約空き状況を読み込めませんでした。お使いの環境によっては表示されないことがあります。LINEでお問い合わせいただければ、折り返し空き状況をお伝えします。';
+    box.appendChild(div);
+  }
+
+  function start(){
+    if(!CONFIG.csvUrl){ render(parseCsv(SAMPLE)); return; }
+    var done=false;
+    var timer=setTimeout(function(){ if(!done){ done=true; showFallback(); } },8000);
+    fetch(CONFIG.csvUrl,{cache:'no-store'})
+      .then(function(res){ if(!res.ok) throw new Error('status '+res.status); return res.text(); })
+      .then(function(text){
+        if(done) return; done=true; clearTimeout(timer);
+        var map=parseCsv(text);
+        if(!Object.keys(map).length){ showFallback(); return; }
+        render(map);
+      })
+      .catch(function(){ if(done) return; done=true; clearTimeout(timer); showFallback(); });
+  }
+
+  if(document.readyState==='loading'){
+    document.addEventListener('DOMContentLoaded',start);
+  }else{ start(); }
+})();
+</script>
+</body>
+</html>
