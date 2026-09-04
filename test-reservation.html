@@ -79,6 +79,7 @@ h1{font-family:'Kiwi Maru',serif;font-weight:500;font-size:1.05rem;margin:1.2rem
 .avail-cell.full .st{color:var(--orange);font-weight:700}
 .avail-cell.none .st{opacity:.3}
 .avail-legend{font-size:.72rem;line-height:1.8;margin-top:.7rem;opacity:.75;text-align:left}
+.avail-legend .nw{white-space:nowrap}
 .avail-fallback{
   font-size:.85rem;line-height:1.8;text-align:left;
   background:rgba(237,80,40,.07);padding:.9rem 1rem;border-radius:8px;
@@ -132,10 +133,10 @@ h1{font-family:'Kiwi Maru',serif;font-weight:500;font-size:1.05rem;margin:1.2rem
     <div id="availGrid"></div>
 
     <p class="avail-legend" id="availLegend" hidden>
-      数字は受付可能な時間帯（10–17 ＝ 10時〜17時の間で受付可能）　× 満席　休 お休み<br>
+      <span class="nw">数字は受付可能な時間帯</span><span class="nw">（10–17 ＝ 10時〜17時の間で受付可能）</span><br>
+      <span class="nw">× 満席</span>　<span class="nw">休 お休み</span>　<span class="nw">— 準備中</span><br>
       表示は目安です。お問い合わせの時点でご予約が入っている場合があります。<br>
-      犬種・コースによっては、ご希望の日にお受けできないことがあります。<br>
-      「—」の日は、空き状況の準備中です。
+      犬種・コースによっては、ご希望の日にお受けできないことがあります。
     </p>
   </section>
 
