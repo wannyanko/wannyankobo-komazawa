@@ -383,6 +383,45 @@ footer{background:var(--kinari);text-align:center;font-size:.8rem;padding:1.5rem
 footer a{margin:0 .5rem}
 
 /* news */
+/* availability */
+.avail-wrap{max-width:720px}
+.avail-next{
+  display:flex;flex-wrap:wrap;align-items:baseline;gap:.2rem .8rem;
+  background:var(--cream);border-left:4px solid var(--orange);
+  padding:.9rem 1.1rem;margin-bottom:1.3rem;
+}
+.avail-next .lbl{font-size:.82rem;color:var(--orange-d);font-weight:700}
+.avail-next .val{font-size:1.05rem;font-weight:700;font-variant-numeric:tabular-nums}
+.avail-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:0;border:1px solid var(--usuoge)}
+.avail-cell{border-top:1px solid var(--usuoge)}
+.avail-grid .avail-cell:nth-child(-n+7){border-top:0}
+.avail-cell{
+  border-left:1px solid var(--usuoge);padding:.5rem .15rem .6rem;
+  text-align:center;min-height:78px;background:#fff;
+}
+.avail-cell:first-child{border-left:0}
+.avail-cell .w{display:block;font-size:.68rem;color:var(--orange-d);font-weight:700;line-height:1.4}
+.avail-cell .dd{display:block;font-size:.9rem;font-weight:700;line-height:1.5}
+.avail-cell .st{
+  display:block;font-size:.68rem;line-height:1.35;letter-spacing:-.02em;
+  font-variant-numeric:tabular-nums;word-break:keep-all;margin-top:.15rem;
+}
+.avail-cell .st.s1{font-size:.6rem;letter-spacing:-.04em}
+.avail-cell .st.s2{font-size:.53rem;letter-spacing:-.06em}
+.avail-cell.off{background:var(--usuoge)}
+.avail-cell.off .st,.avail-cell.off .dd{opacity:.5}
+.avail-cell.full .st{color:var(--orange-d);font-weight:700}
+.avail-cell.none .st{opacity:.35}
+.avail-legend{font-size:.76rem;line-height:1.9;margin-top:.7rem;opacity:.75}
+.avail-legend .nw{white-space:nowrap}
+.avail-fallback{
+  background:var(--cream);padding:1.1rem 1.2rem;font-size:.9rem;line-height:1.9;
+}
+@media (max-width:420px){
+  .avail-cell{min-height:72px;padding:.45rem .1rem .5rem}
+  .avail-cell .st{font-size:.62rem}
+}
+
 .news-list{display:grid;gap:.9rem;max-width:720px}
 .news-list article{
   background:#fff;border:1px solid rgba(237,80,40,.18);border-radius:12px;
@@ -427,6 +466,7 @@ footer a{margin:0 .5rem}
         <li><a href="#concept">コンセプト</a></li>
         <li><a href="#price">料金</a></li>
         <li><a href="#flow">ご利用の流れ</a></li>
+        <li><a href="#availability">予約空き状況</a></li>
         <li><a href="#news">お知らせ</a></li>
         <li><a href="#shop">店舗情報</a></li>
       </ul>
@@ -582,6 +622,30 @@ footer a{margin:0 .5rem}
     </div>
   </section>
 
+  <section id="availability">
+    <div class="inner">
+      <span class="en">Availability</span>
+      <h2 class="sec-title">予約空き状況</h2>
+      <div class="avail-wrap">
+
+        <div class="avail-next" id="availNext" hidden>
+          <span class="lbl">最短でお受けできる日</span>
+          <span class="val" id="availNextVal"></span>
+        </div>
+
+        <div id="availGrid"></div>
+
+        <p class="avail-legend" id="availLegend" hidden>
+          <span class="nw">数字は受付可能な時間帯</span><span class="nw">（10–17 ＝ 10時〜17時の間で受付可能）</span><br>
+          <span class="nw">× 満席</span>　<span class="nw">休 お休み</span>　<span class="nw">— 準備中</span><br>
+          表示は目安です。お問い合わせの時点でご予約が入っている場合があります。<br>
+          犬種・コースによっては、ご希望の日にお受けできないことがあります。
+        </p>
+
+      </div>
+    </div>
+  </section>
+
   <section id="sns" class="tint">
     <div class="inner">
       <span class="en">Follow us</span>
@@ -616,45 +680,46 @@ footer a{margin:0 .5rem}
       <h2 class="sec-title">お知らせ</h2>
       <div class="news-list">
 
-        <!-- ▼▼▼ ここから お知らせ注意 ▼▼▼
-             書き換えるのは次の2か所だけです。
-             ①「2026.○.○」… ページに表示される日付
-             ②「〜」の文章  … お知らせの本文
-             ※ datetime="2026-01-01" の部分も、同じ日付に直してください
+        <!-- ============================================================
+             ★お知らせを1件書くとき★
+
+             すぐ下の「ここから ↓」と「ここまで ↑」の【あいだ】に、
+             次の4行をそのまま貼り付けてください。
+             貼る場所さえ合っていれば、表示は崩れません。
+
+             <article>
+               <time datetime="2026-01-01">2026.○.○</time>
+               <p>お知らせの本文をここに入力します。</p>
+             </article>
+
+             書き換えるのは2か所だけです。
+             ①「2026.○.○」    … ページに表示される日付
+             ②「〜」の文章     … お知らせの本文
+             ※ datetime="2026-01-01" も同じ日付に直してください
                 （例：7月20日なら datetime="2026-07-20"）
-             ※ < > で囲まれた部分（<article> や <p> など）は消さないでください -->
-       
-         <!-- ▼▼▼ ここから お知らせ1件目 ▼▼▼ -->
-        <article>
-          <time datetime="2026-09-01">2026.09.01</time>
-          <p>9月の空き状況はこちらから！<a href="https://share.google/BFFIg7ssSZoMEgmll" target="_blank" rel="noopener">Googleビジネスページ</a>でご確認いただけます！</p>
-        </article>
-        <!-- ▲▲▲ ここまで お知らせ1件目 ▲▲▲ -->
-        
-        <!-- 【お知らせを減らしたいとき】
-             「▼ここから○件目」から「▲ここまで○件目」までを、まとめて削除してください。
-             1件だけ、2件だけでも表示は崩れません。
-             全部消した場合は、お知らせ欄そのものが自動で消えます。
+             ※ < > で囲まれた部分（<article> や <p> など）は消さないでください
 
-             【お知らせを増やしたいとき・消したものを戻したいとき】
-             下の「コピー用」の4行をコピーして、増やしたい場所に貼り付けてください。
+             【2件目以降を増やすとき】
+             1件目の <article> 〜 </article> の4行をコピーして、
+             その下に貼り付け、日付と本文を書き換えてください。
+             新しいお知らせを上に出したいときは、上に貼ってください。
 
-             【新しいお知らせを一番上に出したいとき】
-             1件目の日付と本文を書き換えるのが、いちばん簡単です。
+             【お知らせを消すとき】
+             <article> から </article> までを、まとめて削除してください。
+             全部消すと、お知らせ欄そのものが自動で消えます。
 
              【文章の中にリンクを入れたいとき】
              リンクにしたい文字を、次のように囲んでください。
              例）くわしくは<a href="https://www.instagram.com/wannyan_komazawa/" target="_blank" rel="noopener">こちら</a>をご覧ください。
              ・https://... の部分を、リンク先のアドレスに変えてください
              ・「こちら」の部分が、画面に表示される文字になります
-             ・target="_blank" rel="noopener" は、別の画面で開くためのものです。そのまま残してください
+             ・target="_blank" rel="noopener" はそのまま残してください
+             ============================================================ -->
 
-             ▼▼ コピー用（この4行をコピーして使ってください）▼▼
-        <article>
-          <time datetime="2026-01-01">2026.○.○</time>
-          <p>お知らせの本文をここに入力します。</p>
-        </article>
-             ▲▲ コピー用ここまで ▲▲ -->
+        <!-- ▼▼▼ ここから ↓　お知らせはこの下に貼り付けます ▼▼▼ -->
+
+
+        <!-- ▲▲▲ ここまで ↑　お知らせはこの上に貼り付けます ▲▲▲ -->
 
       </div>
     </div>
@@ -782,6 +847,153 @@ footer a{margin:0 .5rem}
     var link = nav.querySelector('a[href="#news"]');
     if(link && link.parentNode) link.parentNode.style.display = 'none';
   }
+})();
+</script>
+
+<!-- ============================================================
+     ★予約空き状況（自動表示）★
+     スプレッドシートを読んで、直近2週間ぶんを自動で表示します。
+     書き換えるのは csvUrl の1行だけです。
+     空のままだとサンプルデータが表示されます（確認用）。
+     ============================================================ -->
+<script>
+(function(){
+  'use strict';
+
+  var CONFIG = {
+    csvUrl: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRYFUOrz3z3He0TCDjMYd9meIa4h08msfsPhJVOWTdBRkLzcm9xPcSn7vZ000H3bMhvf2v9wrHcg_7G/pub?gid=1749303982&single=true&output=csv',   // ← スプレッドシート「HP用」タブの公開CSV URL
+    days: 14      // ← トップに出す日数（7日ぶんずつ改行して並びます）
+  };
+
+  var SAMPLE = [
+    '日付,空き時間',
+    '2026-09-02,10時〜17時',
+    '2026-09-03,10時〜13時',
+    '2026-09-04,10時〜17時',
+    '2026-09-05,満席',
+    '2026-09-06,14時〜17時',
+    '2026-09-07,休み',
+    '2026-09-08,10時〜17時',
+    '2026-09-09,10時〜12時／14時〜17時',
+    '2026-09-10,10時〜17時',
+    '2026-09-11,満席',
+    '2026-09-12,満席',
+    '2026-09-13,10時〜14時',
+    '2026-09-14,休み',
+    '2026-09-15,10時〜17時',
+    '2026-09-16,10時〜17時'
+  ].join('\n');
+
+  var WDAY = ['日','月','火','水','木','金','土'];
+  function pad(n){ return (n<10?'0':'')+n; }
+  function key(d){ return d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate()); }
+
+  function parseCsv(text){
+    var map={}, lines=text.replace(/\r/g,'').split('\n');
+    for(var i=0;i<lines.length;i++){
+      var line=lines[i].trim(); if(!line) continue;
+      var cols=(line.match(/("[^"]*"|[^,]*)(,|$)/g)||[]).map(function(c){
+        return c.replace(/,$/,'').replace(/^"|"$/g,'').trim();
+      });
+      var raw=cols[0]; if(!raw||raw==='日付') continue;
+      var m=raw.match(/^(\d{4})[-\/](\d{1,2})[-\/](\d{1,2})/); if(!m) continue;
+      map[m[1]+'-'+pad(+m[2])+'-'+pad(+m[3])] = cols[1]||'';
+    }
+    return map;
+  }
+
+  function compact(s){
+    return s.replace(/(\d+)\s*時\s*(\d+)\s*分?/g,'$1:$2')
+            .replace(/(\d+)\s*時/g,'$1')
+            .replace(/[〜~]/g,'–')
+            .replace(/\s+/g,'');
+  }
+
+  function classify(v){
+    if(!v) return {cls:'none',text:'—'};
+    if(/^(満|受付終了|×|x|X)/.test(v)) return {cls:'full',text:'×'};
+    if(/^(休|定)/.test(v))            return {cls:'off', text:'休'};
+    if(/\d/.test(v))                  return {cls:'open',text:compact(v),open:true,raw:v};
+    if(/^空/.test(v))                 return {cls:'open',text:'空き',open:true,raw:''};
+    return {cls:'none',text:'—'};
+  }
+
+  function render(map){
+    var box=document.getElementById('availGrid');
+    box.textContent='';
+    var grid=document.createElement('div');
+    grid.className='avail-grid';
+
+    var today=new Date(); today.setHours(0,0,0,0);
+    var firstOpen=null;
+
+    for(var i=0;i<CONFIG.days;i++){
+      var d=new Date(today); d.setDate(d.getDate()+i);
+      var info=classify(map[key(d)]);
+
+      var cell=document.createElement('div');
+      cell.className='avail-cell '+info.cls;
+
+      var w=document.createElement('span'); w.className='w';
+      w.textContent=WDAY[d.getDay()]; cell.appendChild(w);
+
+      var dd=document.createElement('span'); dd.className='dd';
+      dd.textContent=(d.getMonth()+1)+'/'+d.getDate(); cell.appendChild(dd);
+
+      var st=document.createElement('span'); st.className='st';
+      var parts=info.text.split(/[／\/、･・]/);
+      var maxLen=0;
+      for(var p=0;p<parts.length;p++){ parts[p]=parts[p].trim(); if(parts[p].length>maxLen) maxLen=parts[p].length; }
+      if(maxLen>=8) st.className+=' s2'; else if(maxLen>=6) st.className+=' s1';
+      for(var p=0;p<parts.length;p++){
+        if(p>0) st.appendChild(document.createElement('br'));
+        st.appendChild(document.createTextNode(parts[p]));
+      }
+      cell.appendChild(st);
+
+      grid.appendChild(cell);
+      if(info.open && !firstOpen) firstOpen={date:d,raw:info.raw};
+    }
+
+    box.appendChild(grid);
+
+    if(firstOpen){
+      var f=firstOpen.date;
+      var label=(f.getMonth()+1)+'月'+f.getDate()+'日（'+WDAY[f.getDay()]+'）';
+      if(firstOpen.raw) label+='　'+firstOpen.raw;
+      document.getElementById('availNextVal').textContent=label;
+      document.getElementById('availNext').hidden=false;
+    }
+    document.getElementById('availLegend').hidden=false;
+  }
+
+  function showFallback(){
+    var box=document.getElementById('availGrid');
+    box.textContent='';
+    var div=document.createElement('div');
+    div.className='avail-fallback';
+    div.textContent='予約空き状況を読み込めませんでした。お使いの環境によっては表示されないことがあります。LINEでお問い合わせいただければ、折り返し空き状況をお伝えします。';
+    box.appendChild(div);
+  }
+
+  function start(){
+    if(!CONFIG.csvUrl){ render(parseCsv(SAMPLE)); return; }
+    var done=false;
+    var timer=setTimeout(function(){ if(!done){ done=true; showFallback(); } },8000);
+    fetch(CONFIG.csvUrl,{cache:'no-store'})
+      .then(function(res){ if(!res.ok) throw new Error('status '+res.status); return res.text(); })
+      .then(function(text){
+        if(done) return; done=true; clearTimeout(timer);
+        var map=parseCsv(text);
+        if(!Object.keys(map).length){ showFallback(); return; }
+        render(map);
+      })
+      .catch(function(){ if(done) return; done=true; clearTimeout(timer); showFallback(); });
+  }
+
+  if(document.readyState==='loading'){
+    document.addEventListener('DOMContentLoaded',start);
+  }else{ start(); }
 })();
 </script>
 </body>
