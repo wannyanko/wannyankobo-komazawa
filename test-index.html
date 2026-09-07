@@ -408,6 +408,8 @@ footer a{margin:0 .5rem}
   display:block;font-size:.68rem;line-height:1.35;letter-spacing:-.02em;
   font-variant-numeric:tabular-nums;word-break:keep-all;margin-top:.15rem;
 }
+.avail-cell .st.s1{font-size:.6rem;letter-spacing:-.04em}
+.avail-cell .st.s2{font-size:.53rem;letter-spacing:-.06em}
 .avail-cell.off{background:var(--usuoge)}
 .avail-cell.off .st,.avail-cell.off .dd{opacity:.5}
 .avail-cell.full .st{color:var(--orange-d);font-weight:700}
@@ -938,7 +940,10 @@ footer a{margin:0 .5rem}
       dd.textContent=(d.getMonth()+1)+'/'+d.getDate(); cell.appendChild(dd);
 
       var st=document.createElement('span'); st.className='st';
-      var parts=info.text.split('／');
+      var parts=info.text.split(/[／\/、･・]/);
+      var maxLen=0;
+      for(var p=0;p<parts.length;p++){ parts[p]=parts[p].trim(); if(parts[p].length>maxLen) maxLen=parts[p].length; }
+      if(maxLen>=8) st.className+=' s2'; else if(maxLen>=6) st.className+=' s1';
       for(var p=0;p<parts.length;p++){
         if(p>0) st.appendChild(document.createElement('br'));
         st.appendChild(document.createTextNode(parts[p]));

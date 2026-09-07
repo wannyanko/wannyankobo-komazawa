@@ -78,6 +78,8 @@
     display:block; font-size:.72rem; line-height:1.4;
     font-variant-numeric:tabular-nums; letter-spacing:-.02em; word-break:keep-all;
   }
+  .t.s1{ font-size:.64rem; letter-spacing:-.03em; }
+  .t.s2{ font-size:.56rem; letter-spacing:-.05em; }
   td.open .t{ color:#4a3728; }
   td.full .t{ color:#4a3728; font-weight:600; }
   td.off  .t{ color:#c2b7a9; }
@@ -336,7 +338,14 @@
 
           var tSpan = document.createElement('span');
           tSpan.className = 't';
-          var parts = info.text.split('／');
+          var parts = info.text.split(/[／\/、･・]/);
+          var maxLen = 0;
+          for (var p = 0; p < parts.length; p++) {
+            parts[p] = parts[p].trim();
+            if (parts[p].length > maxLen) maxLen = parts[p].length;
+          }
+          if (maxLen >= 8) tSpan.className += ' s2';
+          else if (maxLen >= 6) tSpan.className += ' s1';
           for (var p = 0; p < parts.length; p++) {
             if (p > 0) tSpan.appendChild(document.createElement('br'));
             tSpan.appendChild(document.createTextNode(parts[p]));
