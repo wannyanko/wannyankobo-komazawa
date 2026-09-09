@@ -258,7 +258,7 @@ footer a{color:var(--orange);text-decoration:none;margin:0 .5rem}
   <p>個人情報の取り扱いに関するお問い合わせ、開示等のご請求、および個人情報の取り扱いに関する苦情のお申出は、いずれも下記の各店舗窓口にて承ります。</p>
   <div class="box">
     <dl>
-      <dt>駒沢店</dt><dd>〒154-0014 東京都世田谷区新町2-2-22 1F（NIビル）<br><a href="tel:0368240187">03-6824-0187</a><br>10:00〜19:00（当日のご予約が終わり次第 営業終了）／月曜・ほか不定休</dd>
+      <dt>駒沢店</dt><dd>〒154-0014 東京都世田谷区新町2-2-22 1F（NIビル）<br><a href="tel:0368240187" data-pos="privacy-shopinfo">03-6824-0187</a><br>10:00〜19:00（当日のご予約が終わり次第 営業終了）／月曜・ほか不定休</dd>
       <dt>青葉台店</dt><dd>〒227-0047 神奈川県横浜市青葉区みたけ台23-4 1F<br><a href="tel:0459780075">045-978-0075</a><br>10:00〜19:00／年中無休</dd>
     </dl>
   </div>
@@ -277,5 +277,26 @@ footer a{color:var(--orange);text-decoration:none;margin:0 .5rem}
   <div style="margin-top:.5rem">&copy; 2026 わんにゃん工房 駒沢店</div>
 </footer>
 
+<!-- ============================================================
+     ★LINE・電話タップの計測（GA4）★
+     LINEボタンと電話リンクのタップ回数を、押された場所ごとに記録します。
+     見た目や動作は一切変わりません。触る必要はありません。
+     ============================================================ -->
+<script>
+(function(){
+  document.addEventListener('click', function(e){
+    var a = e.target && e.target.closest ? e.target.closest('a') : null;
+    if(!a) return;
+    var href = a.getAttribute('href') || '';
+    var pos  = a.getAttribute('data-pos') || 'unknown';
+    if(typeof gtag !== 'function') return;
+    if(href.indexOf('lin.ee') > -1){
+      gtag('event','line_tap',{button_pos:pos});
+    }else if(href.indexOf('tel:') === 0){
+      gtag('event','tel_tap',{button_pos:pos});
+    }
+  }, true);
+})();
+</script>
 </body>
 </html>
